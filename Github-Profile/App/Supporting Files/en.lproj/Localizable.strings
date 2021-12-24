@@ -1,0 +1,12 @@
+/* 
+  Localizable.strings
+  Github-Profile
+
+  Created by Marcos González on 2021.
+  
+*/
+
+"profile_summary_title" = "Profile";
+"profile_refresh_title" = "Pull to refresh";
+"general_alert_error_title" = "Error";
+"general_alert_error_button_ok" = "OK";
