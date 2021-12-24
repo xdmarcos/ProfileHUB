@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A592BD4E277601EE0019DC82 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A592BD4A277601EE0019DC82 /* Repository.swift */; };
+		A592BD4F277601EE0019DC82 /* HeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A592BD4B277601EE0019DC82 /* HeaderViewModel.swift */; };
+		A592BD50277601EE0019DC82 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = A592BD4C277601EE0019DC82 /* Section.swift */; };
+		A592BD51277601EE0019DC82 /* SectionHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A592BD4D277601EE0019DC82 /* SectionHeaderViewModel.swift */; };
+		A592BD58277602DB0019DC82 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A592BD54277602DB0019DC82 /* HeaderView.swift */; };
+		A592BD59277602DB0019DC82 /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A592BD55277602DB0019DC82 /* SectionHeaderView.swift */; };
+		A592BD5A277602DB0019DC82 /* RepositoryTileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A592BD56277602DB0019DC82 /* RepositoryTileCell.swift */; };
+		A592BD5B277602DB0019DC82 /* ViewConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A592BD57277602DB0019DC82 /* ViewConfigurable.swift */; };
+		A592BD5E277603070019DC82 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A592BD5C277603070019DC82 /* ProfileViewController.swift */; };
+		A592BD5F277603070019DC82 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A592BD5D277603070019DC82 /* ProfileView.swift */; };
+		A592BD61277603340019DC82 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A592BD60277603340019DC82 /* ProfilePresenter.swift */; };
+		A592BD6327760CDC0019DC82 /* ProfileViewController+Build.swift in Sources */ = {isa = PBXBuildFile; fileRef = A592BD6227760CDC0019DC82 /* ProfileViewController+Build.swift */; };
 		A5CF171427724DC00090E1A7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5CF171627724DC00090E1A7 /* Localizable.strings */; };
 		A5CF171B27724DEB0090E1A7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5CF171D27724DEB0090E1A7 /* InfoPlist.strings */; };
 		A5E57D0627723C6400DD0ECD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E57D0527723C6400DD0ECD /* AppDelegate.swift */; };
@@ -30,6 +42,18 @@
 
 /* Begin PBXFileReference section */
 		A592BD472775FE040019DC82 /* profilehub-shared.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "profilehub-shared.xcconfig"; sourceTree = "<group>"; };
+		A592BD4A277601EE0019DC82 /* Repository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		A592BD4B277601EE0019DC82 /* HeaderViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderViewModel.swift; sourceTree = "<group>"; };
+		A592BD4C277601EE0019DC82 /* Section.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
+		A592BD4D277601EE0019DC82 /* SectionHeaderViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionHeaderViewModel.swift; sourceTree = "<group>"; };
+		A592BD54277602DB0019DC82 /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		A592BD55277602DB0019DC82 /* SectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
+		A592BD56277602DB0019DC82 /* RepositoryTileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryTileCell.swift; sourceTree = "<group>"; };
+		A592BD57277602DB0019DC82 /* ViewConfigurable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewConfigurable.swift; sourceTree = "<group>"; };
+		A592BD5C277603070019DC82 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		A592BD5D277603070019DC82 /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		A592BD60277603340019DC82 /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
+		A592BD6227760CDC0019DC82 /* ProfileViewController+Build.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileViewController+Build.swift"; sourceTree = "<group>"; };
 		A5CF171027724D4F0090E1A7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		A5CF171527724DC00090E1A7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A5CF171727724DC50090E1A7 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -77,6 +101,46 @@
 			path = Configurations;
 			sourceTree = "<group>";
 		};
+		A592BD48277601A60019DC82 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A592BD4C277601EE0019DC82 /* Section.swift */,
+				A592BD4A277601EE0019DC82 /* Repository.swift */,
+				A592BD4B277601EE0019DC82 /* HeaderViewModel.swift */,
+				A592BD4D277601EE0019DC82 /* SectionHeaderViewModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A592BD49277601AD0019DC82 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				A592BD60277603340019DC82 /* ProfilePresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		A592BD522776029F0019DC82 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				A592BD5D277603070019DC82 /* ProfileView.swift */,
+				A592BD5C277603070019DC82 /* ProfileViewController.swift */,
+				A592BD6227760CDC0019DC82 /* ProfileViewController+Build.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		A592BD53277602AF0019DC82 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				A592BD56277602DB0019DC82 /* RepositoryTileCell.swift */,
+				A592BD54277602DB0019DC82 /* HeaderView.swift */,
+				A592BD55277602DB0019DC82 /* SectionHeaderView.swift */,
+				A592BD57277602DB0019DC82 /* ViewConfigurable.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		A5CF173727734AD20090E1A7 /* Root */ = {
 			isa = PBXGroup;
 			children = (
@@ -107,7 +171,9 @@
 			isa = PBXGroup;
 			children = (
 				A5E57D3727723F2C00DD0ECD /* App */,
+				A592BD48277601A60019DC82 /* Model */,
 				A5E57D3827723F4400DD0ECD /* View */,
+				A592BD49277601AD0019DC82 /* Presenter */,
 			);
 			path = "Github-Profile";
 			sourceTree = "<group>";
@@ -136,6 +202,8 @@
 			isa = PBXGroup;
 			children = (
 				A5CF173727734AD20090E1A7 /* Root */,
+				A592BD522776029F0019DC82 /* Profile */,
+				A592BD53277602AF0019DC82 /* Common */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -258,9 +326,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5E57D3627723D7A00DD0ECD /* ScreenStackProtocol.swift in Sources */,
+				A592BD58277602DB0019DC82 /* HeaderView.swift in Sources */,
+				A592BD51277601EE0019DC82 /* SectionHeaderViewModel.swift in Sources */,
 				A5E57D0A27723C6400DD0ECD /* RootViewController.swift in Sources */,
+				A592BD4E277601EE0019DC82 /* Repository.swift in Sources */,
+				A592BD6327760CDC0019DC82 /* ProfileViewController+Build.swift in Sources */,
+				A592BD50277601EE0019DC82 /* Section.swift in Sources */,
 				A5E57D0627723C6400DD0ECD /* AppDelegate.swift in Sources */,
+				A592BD59277602DB0019DC82 /* SectionHeaderView.swift in Sources */,
+				A592BD61277603340019DC82 /* ProfilePresenter.swift in Sources */,
 				A5E57D0827723C6400DD0ECD /* SceneDelegate.swift in Sources */,
+				A592BD5B277602DB0019DC82 /* ViewConfigurable.swift in Sources */,
+				A592BD5E277603070019DC82 /* ProfileViewController.swift in Sources */,
+				A592BD5A277602DB0019DC82 /* RepositoryTileCell.swift in Sources */,
+				A592BD5F277603070019DC82 /* ProfileView.swift in Sources */,
+				A592BD4F277601EE0019DC82 /* HeaderViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

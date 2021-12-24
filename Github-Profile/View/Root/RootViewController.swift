@@ -10,6 +10,7 @@ import UIKit
 class RootViewController: UINavigationController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		viewControllers = [UIViewController()]
+
+		viewControllers = [ProfileViewController.build()]
 	}
 }
