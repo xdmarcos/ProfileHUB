@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A56B19EC2778A4BB00150B50 /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = A56B19EB2778A4BB00150B50 /* Apollo */; };
-		A56B19EE2778A4BB00150B50 /* ApolloWebSocket in Frameworks */ = {isa = PBXBuildFile; productRef = A56B19ED2778A4BB00150B50 /* ApolloWebSocket */; };
+		A573A8F12778EB7F00B30B5E /* GitHubService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573A8F02778EB7F00B30B5E /* GitHubService.swift */; };
+		A573A8F42778F0D100B30B5E /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = A573A8F32778F0D100B30B5E /* Apollo */; };
 		A592BD4E277601EE0019DC82 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A592BD4A277601EE0019DC82 /* Repository.swift */; };
 		A592BD4F277601EE0019DC82 /* HeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A592BD4B277601EE0019DC82 /* HeaderViewModel.swift */; };
 		A592BD50277601EE0019DC82 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = A592BD4C277601EE0019DC82 /* Section.swift */; };
@@ -24,6 +24,13 @@
 		A5CF171427724DC00090E1A7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5CF171627724DC00090E1A7 /* Localizable.strings */; };
 		A5CF171B27724DEB0090E1A7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5CF171D27724DEB0090E1A7 /* InfoPlist.strings */; };
 		A5D866C62778B23E002CE949 /* GraphQLAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D866C52778B23E002CE949 /* GraphQLAPI.swift */; };
+		A5D866CD2778DAC5002CE949 /* GraphQLProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D866CC2778DAC5002CE949 /* GraphQLProvider.swift */; };
+		A5D866D02778DC6F002CE949 /* NetworkInterceptorProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D866CF2778DC6F002CE949 /* NetworkInterceptorProvider.swift */; };
+		A5D866D22778DCBA002CE949 /* ResponseLoggingInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D866D12778DCBA002CE949 /* ResponseLoggingInterceptor.swift */; };
+		A5D866D62778DE0E002CE949 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D866D52778DE0E002CE949 /* Token.swift */; };
+		A5D866D82778DF33002CE949 /* RequestLoggingInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D866D72778DF33002CE949 /* RequestLoggingInterceptor.swift */; };
+		A5D866DA2778E498002CE949 /* AuthTokenInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D866D92778E498002CE949 /* AuthTokenInterceptor.swift */; };
+		A5D866DC2778E62F002CE949 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D866DB2778E62F002CE949 /* Service.swift */; };
 		A5E57D0627723C6400DD0ECD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E57D0527723C6400DD0ECD /* AppDelegate.swift */; };
 		A5E57D0827723C6400DD0ECD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E57D0727723C6400DD0ECD /* SceneDelegate.swift */; };
 		A5E57D0A27723C6400DD0ECD /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E57D0927723C6400DD0ECD /* RootViewController.swift */; };
@@ -44,6 +51,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A573A8F02778EB7F00B30B5E /* GitHubService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubService.swift; sourceTree = "<group>"; };
 		A592BD472775FE040019DC82 /* profilehub-shared.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "profilehub-shared.xcconfig"; sourceTree = "<group>"; };
 		A592BD4A277601EE0019DC82 /* Repository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		A592BD4B277601EE0019DC82 /* HeaderViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderViewModel.swift; sourceTree = "<group>"; };
@@ -73,6 +81,13 @@
 		A5D866C82778D069002CE949 /* TopRepos.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = TopRepos.graphql; sourceTree = "<group>"; };
 		A5D866C92778D07A002CE949 /* StarredRepos.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = StarredRepos.graphql; sourceTree = "<group>"; };
 		A5D866CB2778D25D002CE949 /* UserProfileRepos.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = UserProfileRepos.graphql; sourceTree = "<group>"; };
+		A5D866CC2778DAC5002CE949 /* GraphQLProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphQLProvider.swift; sourceTree = "<group>"; };
+		A5D866CF2778DC6F002CE949 /* NetworkInterceptorProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInterceptorProvider.swift; sourceTree = "<group>"; };
+		A5D866D12778DCBA002CE949 /* ResponseLoggingInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseLoggingInterceptor.swift; sourceTree = "<group>"; };
+		A5D866D52778DE0E002CE949 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
+		A5D866D72778DF33002CE949 /* RequestLoggingInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestLoggingInterceptor.swift; sourceTree = "<group>"; };
+		A5D866D92778E498002CE949 /* AuthTokenInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTokenInterceptor.swift; sourceTree = "<group>"; };
+		A5D866DB2778E62F002CE949 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		A5E57D0227723C6400DD0ECD /* Github-Profile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Github-Profile.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5E57D0527723C6400DD0ECD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5E57D0727723C6400DD0ECD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -90,8 +105,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A56B19EC2778A4BB00150B50 /* Apollo in Frameworks */,
-				A56B19EE2778A4BB00150B50 /* ApolloWebSocket in Frameworks */,
+				A573A8F42778F0D100B30B5E /* Apollo in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,8 +200,24 @@
 			isa = PBXGroup;
 			children = (
 				A5D866C52778B23E002CE949 /* GraphQLAPI.swift */,
+				A573A8F02778EB7F00B30B5E /* GitHubService.swift */,
+				A5D866CE2778DC49002CE949 /* Client */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		A5D866CE2778DC49002CE949 /* Client */ = {
+			isa = PBXGroup;
+			children = (
+				A5D866DB2778E62F002CE949 /* Service.swift */,
+				A5D866D52778DE0E002CE949 /* Token.swift */,
+				A5D866CC2778DAC5002CE949 /* GraphQLProvider.swift */,
+				A5D866CF2778DC6F002CE949 /* NetworkInterceptorProvider.swift */,
+				A5D866D92778E498002CE949 /* AuthTokenInterceptor.swift */,
+				A5D866D72778DF33002CE949 /* RequestLoggingInterceptor.swift */,
+				A5D866D12778DCBA002CE949 /* ResponseLoggingInterceptor.swift */,
+			);
+			path = Client;
 			sourceTree = "<group>";
 		};
 		A5E57CF927723C6400DD0ECD = {
@@ -281,8 +311,7 @@
 			);
 			name = "Github-Profile";
 			packageProductDependencies = (
-				A56B19EB2778A4BB00150B50 /* Apollo */,
-				A56B19ED2778A4BB00150B50 /* ApolloWebSocket */,
+				A573A8F32778F0D100B30B5E /* Apollo */,
 			);
 			productName = "Github-Profile";
 			productReference = A5E57D0227723C6400DD0ECD /* Github-Profile.app */;
@@ -338,7 +367,7 @@
 			);
 			mainGroup = A5E57CF927723C6400DD0ECD;
 			packageReferences = (
-				A56B19EA2778A4BB00150B50 /* XCRemoteSwiftPackageReference "apollo-ios" */,
+				A573A8F22778F0D100B30B5E /* XCRemoteSwiftPackageReference "apollo-ios" */,
 			);
 			productRefGroup = A5E57D0327723C6400DD0ECD /* Products */;
 			projectDirPath = "";
@@ -397,9 +426,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5D866DA2778E498002CE949 /* AuthTokenInterceptor.swift in Sources */,
+				A5D866D22778DCBA002CE949 /* ResponseLoggingInterceptor.swift in Sources */,
 				A5E57D3627723D7A00DD0ECD /* ScreenStackProtocol.swift in Sources */,
 				A592BD58277602DB0019DC82 /* HeaderView.swift in Sources */,
 				A592BD51277601EE0019DC82 /* SectionHeaderViewModel.swift in Sources */,
+				A573A8F12778EB7F00B30B5E /* GitHubService.swift in Sources */,
+				A5D866D02778DC6F002CE949 /* NetworkInterceptorProvider.swift in Sources */,
+				A5D866D82778DF33002CE949 /* RequestLoggingInterceptor.swift in Sources */,
 				A5E57D0A27723C6400DD0ECD /* RootViewController.swift in Sources */,
 				A592BD4E277601EE0019DC82 /* Repository.swift in Sources */,
 				A5D866C62778B23E002CE949 /* GraphQLAPI.swift in Sources */,
@@ -410,10 +444,13 @@
 				A592BD61277603340019DC82 /* ProfilePresenter.swift in Sources */,
 				A5E57D0827723C6400DD0ECD /* SceneDelegate.swift in Sources */,
 				A592BD5B277602DB0019DC82 /* ViewConfigurable.swift in Sources */,
+				A5D866DC2778E62F002CE949 /* Service.swift in Sources */,
 				A592BD5E277603070019DC82 /* ProfileViewController.swift in Sources */,
 				A592BD5A277602DB0019DC82 /* RepositoryTileCell.swift in Sources */,
 				A592BD5F277603070019DC82 /* ProfileView.swift in Sources */,
+				A5D866CD2778DAC5002CE949 /* GraphQLProvider.swift in Sources */,
 				A592BD4F277601EE0019DC82 /* HeaderViewModel.swift in Sources */,
+				A5D866D62778DE0E002CE949 /* Token.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -729,7 +766,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		A56B19EA2778A4BB00150B50 /* XCRemoteSwiftPackageReference "apollo-ios" */ = {
+		A573A8F22778F0D100B30B5E /* XCRemoteSwiftPackageReference "apollo-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/apollographql/apollo-ios";
 			requirement = {
@@ -740,15 +777,10 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		A56B19EB2778A4BB00150B50 /* Apollo */ = {
+		A573A8F32778F0D100B30B5E /* Apollo */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A56B19EA2778A4BB00150B50 /* XCRemoteSwiftPackageReference "apollo-ios" */;
+			package = A573A8F22778F0D100B30B5E /* XCRemoteSwiftPackageReference "apollo-ios" */;
 			productName = Apollo;
-		};
-		A56B19ED2778A4BB00150B50 /* ApolloWebSocket */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A56B19EA2778A4BB00150B50 /* XCRemoteSwiftPackageReference "apollo-ios" */;
-			productName = ApolloWebSocket;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

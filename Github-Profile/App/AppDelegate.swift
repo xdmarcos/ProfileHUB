@@ -13,6 +13,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		_ application: UIApplication,
 		didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
 	) -> Bool {
+		let githubClient = GraphQLProvider(service: GithubService()).client
+		githubClient.fetch(
+			query: UserProfileReposQuery(login: "xdmarcos"),
+			cachePolicy: .default,
+			queue: .main
+		)
 		return true
 	}
 
