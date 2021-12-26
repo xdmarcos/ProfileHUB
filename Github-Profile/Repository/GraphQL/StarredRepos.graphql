@@ -14,6 +14,7 @@ query Starred($login: String!) {
         }
         name
         owner {
+		  avatarUrl
           login
         }
         stargazerCount

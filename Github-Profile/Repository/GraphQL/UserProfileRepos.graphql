@@ -45,6 +45,7 @@ query UserProfileRepos($login: String!) {
         name
         owner {
           login
+          avatarUrl
         }
         stargazerCount
       }
@@ -62,6 +63,7 @@ query UserProfileRepos($login: String!) {
         name
         owner {
           login
+          avatarUrl
         }
         stargazerCount
       }

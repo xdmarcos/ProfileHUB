@@ -15,6 +15,6 @@ struct GithubService: Service {
 
 	// TODO: hide credentials
 	var token: Token {
-		Token(type: .bearer, value: "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")
+		Token(type: .bearer, value: "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")
 	}
 }

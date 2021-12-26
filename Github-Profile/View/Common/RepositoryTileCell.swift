@@ -34,6 +34,7 @@ class RepositoryTileCell: UICollectionViewCell {
 		static let numberOfLines: Int = 1
 		static let textColor: UIColor = .label
 		static let backgroundColor: UIColor = .systemBackground
+		static let placeholderImage = "octocat"
 	}
 
 	public enum Accessibility {
@@ -63,6 +64,7 @@ class RepositoryTileCell: UICollectionViewCell {
 
 	private var userImage: UIImageView = {
 		let userImage = UIImageView()
+		userImage.image = UIImage( named: ViewTraits.placeholderImage)
 		userImage.backgroundColor = .tertiarySystemBackground
 		userImage.contentMode = .scaleAspectFit
 		userImage.clipsToBounds = true
@@ -129,13 +131,18 @@ class RepositoryTileCell: UICollectionViewCell {
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
+
+	override func prepareForReuse() {
+		super.prepareForReuse()
+		userImage.image = UIImage(named: ViewTraits.placeholderImage)
+	}
 }
 
 extension RepositoryTileCell: ViewCellConfigurable {
 	typealias ViewModel = Repository
 
 	func configure(viewModel: Repository) {
-		userImage.image = viewModel.userImage
+//		userImage.image = viewModel.userImage // TODO: load image
 		usernameLabel.text = viewModel.username
 		repoTitleLabel.text = viewModel.repoName
 		repoDescriptionLabel.text = viewModel.repoDescription

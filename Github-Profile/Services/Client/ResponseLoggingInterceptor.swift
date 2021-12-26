@@ -38,13 +38,13 @@ final class ResponseLoggingInterceptor: ApolloInterceptor {
 		}
 
 		// TODO: change with debugLog
-		print("HTTP Response: \(receivedResponse.httpResponse)")
+		DLog("HTTP Response: \(receivedResponse.httpResponse)")
 
 		guard let stringData = String(bytes: receivedResponse.rawData, encoding: .utf8) else {
-			print("Could not convert data to string!")
+			DLog("Could not convert data to string!")
 			return
 		}
-		print("Data: \(stringData)")
+		DLog("Data: \(stringData)")
 	}
 }
 

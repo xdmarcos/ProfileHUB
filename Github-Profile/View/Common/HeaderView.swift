@@ -35,6 +35,7 @@ class HeaderView: UICollectionReusableView {
 		static let numberOfLines: Int = 1
 		static let textColor: UIColor = .label
 		static let backgroundColor: UIColor = .systemBackground
+		static let placeholderImage = "octocat"
 	}
 
 	public enum Accessibility {
@@ -62,6 +63,7 @@ class HeaderView: UICollectionReusableView {
 
 	private var userImage: UIImageView = {
 		let userImage = UIImageView()
+		userImage.image = UIImage( named: ViewTraits.placeholderImage)
 		userImage.backgroundColor = .tertiarySystemBackground
 		userImage.contentMode = .scaleAspectFit
 		userImage.clipsToBounds = true
@@ -102,7 +104,7 @@ class HeaderView: UICollectionReusableView {
 
 	private var followingLabel: UILabel = {
 		let followingLabel = UILabel()
-		followingLabel.text = "following"
+		followingLabel.text = "following" // TODO: .localized
 		followingLabel.textColor = ViewTraits.textColor
 		followingLabel.font = UIFontMetrics.default.scaledFont(for: UIFont.systemFont(ofSize: ViewTraits.bodyFontSize))
 		followingLabel.textAlignment = .left
@@ -113,7 +115,7 @@ class HeaderView: UICollectionReusableView {
 
 	private var followersLabel: UILabel = {
 		let followersLabel = UILabel()
-		followersLabel.text = "followers"
+		followersLabel.text = "followers"// TODO: .localized
 		followersLabel.textColor = ViewTraits.textColor
 		followersLabel.font = UIFontMetrics.default.scaledFont(for: UIFont.systemFont(ofSize: ViewTraits.bodyFontSize))
 		followersLabel.textAlignment = .left
@@ -173,13 +175,18 @@ class HeaderView: UICollectionReusableView {
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
+
+	override func prepareForReuse() {
+		super.prepareForReuse()
+		userImage.image = UIImage(named: ViewTraits.placeholderImage)
+	}
 }
 
 extension HeaderView: ViewCellConfigurable {
 	typealias ViewModel = HeaderViewModel
 
 	func configure(viewModel: HeaderViewModel) {
-		userImage.image = viewModel.userImage
+//		userImage.image = viewModel.userImage // TODO: load image
 		usernameLabel.text = viewModel.username
 		nameLabel.text = viewModel.name
 		emailLabel.text = viewModel.email

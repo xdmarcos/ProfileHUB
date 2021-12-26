@@ -490,6 +490,7 @@ public final class StarredQuery: GraphQLQuery {
             name
             owner {
               __typename
+              avatarUrl
               login
             }
             stargazerCount
@@ -818,6 +819,7 @@ public final class StarredQuery: GraphQLQuery {
             public static var selections: [GraphQLSelection] {
               return [
                 GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+                GraphQLField("avatarUrl", type: .nonNull(.scalar(String.self))),
                 GraphQLField("login", type: .nonNull(.scalar(String.self))),
               ]
             }
@@ -828,12 +830,12 @@ public final class StarredQuery: GraphQLQuery {
               self.resultMap = unsafeResultMap
             }
 
-            public static func makeOrganization(login: String) -> Owner {
-              return Owner(unsafeResultMap: ["__typename": "Organization", "login": login])
+            public static func makeOrganization(avatarUrl: String, login: String) -> Owner {
+              return Owner(unsafeResultMap: ["__typename": "Organization", "avatarUrl": avatarUrl, "login": login])
             }
 
-            public static func makeUser(login: String) -> Owner {
-              return Owner(unsafeResultMap: ["__typename": "User", "login": login])
+            public static func makeUser(avatarUrl: String, login: String) -> Owner {
+              return Owner(unsafeResultMap: ["__typename": "User", "avatarUrl": avatarUrl, "login": login])
             }
 
             public var __typename: String {
@@ -842,6 +844,16 @@ public final class StarredQuery: GraphQLQuery {
               }
               set {
                 resultMap.updateValue(newValue, forKey: "__typename")
+              }
+            }
+
+            /// A URL pointing to the owner's public avatar.
+            public var avatarUrl: String {
+              get {
+                return resultMap["avatarUrl"]! as! String
+              }
+              set {
+                resultMap.updateValue(newValue, forKey: "avatarUrl")
               }
             }
 
@@ -886,6 +898,7 @@ public final class TopQuery: GraphQLQuery {
             name
             owner {
               __typename
+              avatarUrl
               login
             }
             stargazerCount
@@ -1214,6 +1227,7 @@ public final class TopQuery: GraphQLQuery {
             public static var selections: [GraphQLSelection] {
               return [
                 GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+                GraphQLField("avatarUrl", type: .nonNull(.scalar(String.self))),
                 GraphQLField("login", type: .nonNull(.scalar(String.self))),
               ]
             }
@@ -1224,12 +1238,12 @@ public final class TopQuery: GraphQLQuery {
               self.resultMap = unsafeResultMap
             }
 
-            public static func makeOrganization(login: String) -> Owner {
-              return Owner(unsafeResultMap: ["__typename": "Organization", "login": login])
+            public static func makeOrganization(avatarUrl: String, login: String) -> Owner {
+              return Owner(unsafeResultMap: ["__typename": "Organization", "avatarUrl": avatarUrl, "login": login])
             }
 
-            public static func makeUser(login: String) -> Owner {
-              return Owner(unsafeResultMap: ["__typename": "User", "login": login])
+            public static func makeUser(avatarUrl: String, login: String) -> Owner {
+              return Owner(unsafeResultMap: ["__typename": "User", "avatarUrl": avatarUrl, "login": login])
             }
 
             public var __typename: String {
@@ -1238,6 +1252,16 @@ public final class TopQuery: GraphQLQuery {
               }
               set {
                 resultMap.updateValue(newValue, forKey: "__typename")
+              }
+            }
+
+            /// A URL pointing to the owner's public avatar.
+            public var avatarUrl: String {
+              get {
+                return resultMap["avatarUrl"]! as! String
+              }
+              set {
+                resultMap.updateValue(newValue, forKey: "avatarUrl")
               }
             }
 
@@ -1573,6 +1597,7 @@ public final class UserProfileReposQuery: GraphQLQuery {
             owner {
               __typename
               login
+              avatarUrl
             }
             stargazerCount
           }
@@ -1595,6 +1620,7 @@ public final class UserProfileReposQuery: GraphQLQuery {
             owner {
               __typename
               login
+              avatarUrl
             }
             stargazerCount
           }
@@ -2421,6 +2447,7 @@ public final class UserProfileReposQuery: GraphQLQuery {
               return [
                 GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
                 GraphQLField("login", type: .nonNull(.scalar(String.self))),
+                GraphQLField("avatarUrl", type: .nonNull(.scalar(String.self))),
               ]
             }
 
@@ -2430,12 +2457,12 @@ public final class UserProfileReposQuery: GraphQLQuery {
               self.resultMap = unsafeResultMap
             }
 
-            public static func makeOrganization(login: String) -> Owner {
-              return Owner(unsafeResultMap: ["__typename": "Organization", "login": login])
+            public static func makeOrganization(login: String, avatarUrl: String) -> Owner {
+              return Owner(unsafeResultMap: ["__typename": "Organization", "login": login, "avatarUrl": avatarUrl])
             }
 
-            public static func makeUser(login: String) -> Owner {
-              return Owner(unsafeResultMap: ["__typename": "User", "login": login])
+            public static func makeUser(login: String, avatarUrl: String) -> Owner {
+              return Owner(unsafeResultMap: ["__typename": "User", "login": login, "avatarUrl": avatarUrl])
             }
 
             public var __typename: String {
@@ -2454,6 +2481,16 @@ public final class UserProfileReposQuery: GraphQLQuery {
               }
               set {
                 resultMap.updateValue(newValue, forKey: "login")
+              }
+            }
+
+            /// A URL pointing to the owner's public avatar.
+            public var avatarUrl: String {
+              get {
+                return resultMap["avatarUrl"]! as! String
+              }
+              set {
+                resultMap.updateValue(newValue, forKey: "avatarUrl")
               }
             }
           }
@@ -2690,6 +2727,7 @@ public final class UserProfileReposQuery: GraphQLQuery {
               return [
                 GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
                 GraphQLField("login", type: .nonNull(.scalar(String.self))),
+                GraphQLField("avatarUrl", type: .nonNull(.scalar(String.self))),
               ]
             }
 
@@ -2699,12 +2737,12 @@ public final class UserProfileReposQuery: GraphQLQuery {
               self.resultMap = unsafeResultMap
             }
 
-            public static func makeOrganization(login: String) -> Owner {
-              return Owner(unsafeResultMap: ["__typename": "Organization", "login": login])
+            public static func makeOrganization(login: String, avatarUrl: String) -> Owner {
+              return Owner(unsafeResultMap: ["__typename": "Organization", "login": login, "avatarUrl": avatarUrl])
             }
 
-            public static func makeUser(login: String) -> Owner {
-              return Owner(unsafeResultMap: ["__typename": "User", "login": login])
+            public static func makeUser(login: String, avatarUrl: String) -> Owner {
+              return Owner(unsafeResultMap: ["__typename": "User", "login": login, "avatarUrl": avatarUrl])
             }
 
             public var __typename: String {
@@ -2723,6 +2761,16 @@ public final class UserProfileReposQuery: GraphQLQuery {
               }
               set {
                 resultMap.updateValue(newValue, forKey: "login")
+              }
+            }
+
+            /// A URL pointing to the owner's public avatar.
+            public var avatarUrl: String {
+              get {
+                return resultMap["avatarUrl"]! as! String
+              }
+              set {
+                resultMap.updateValue(newValue, forKey: "avatarUrl")
               }
             }
           }

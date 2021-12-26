@@ -8,7 +8,8 @@
 import UIKit
 
 protocol ProfileViewDisplayale: AnyObject {
-	func reloadData(with datasource: [Section])
+	func displayView(with sections: [Section])
+	func reloadData(with sections: [Section])
 }
 
 final class ProfileViewController: UIViewController {
@@ -37,8 +38,6 @@ final class ProfileViewController: UIViewController {
 		super.viewDidLoad()
 
 		setupUI()
-		createDatasource() // TODO: Add to presenter
-
 		presenter.viewDidLoad()
 	}
 
@@ -52,9 +51,9 @@ final class ProfileViewController: UIViewController {
 // MARK: - Setup UI components
 private extension ProfileViewController {
 	func setupUI() {
-		title = "profile_summary_title"//.localized
+		title = "profile_summary_title"// TODO: .localized
 
-		refreshControl.attributedTitle = NSAttributedString(string: "profile_refresh_title")//.localized)
+		refreshControl.attributedTitle = NSAttributedString(string: "profile_refresh_title")// TODO: .localized)
 		refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
 		sceneView.profileCollectionView.refreshControl = refreshControl
 
@@ -216,6 +215,8 @@ private extension ProfileViewController {
 		}
 
 		dataSource?.supplementaryViewProvider = { [weak self] collectionView, kind, indexPath in
+			guard let self = self else { return nil }
+
 			if kind == HeaderView.supplementaryViewKind {
 				guard let sectionHeader = collectionView.dequeueReusableSupplementaryView(
 					ofKind: kind,
@@ -224,16 +225,8 @@ private extension ProfileViewController {
 				) as? HeaderView else {
 					return nil
 				}
-				sectionHeader.configure(
-					viewModel: .init(
-						name: "Marcos Gonzalez",
-						username: "xdmarcos",
-						userImage: UIImage(named: "octocat")!,
-						email: "xdmgzdev@gmail.com",
-						following: "3",
-						followers: "0"
-					)
-				)
+
+				sectionHeader.configure(viewModel: self.presenter.userProfileInfo())
 				return sectionHeader
 			} else {
 				guard let sectionHeader = collectionView.dequeueReusableSupplementaryView(
@@ -244,10 +237,8 @@ private extension ProfileViewController {
 					return nil
 				}
 
-				guard let firstRepo = self?.dataSource?.itemIdentifier(for: indexPath) else { return nil }
-				guard let section = self?.dataSource?.snapshot().sectionIdentifier(
-					containingItem: firstRepo
-				) else { return nil }
+				guard let firstRepo = self.dataSource?.itemIdentifier(for: indexPath),
+					  let section = self.dataSource?.snapshot().sectionIdentifier(containingItem: firstRepo) else { return nil }
 
 				sectionHeader.configure(viewModel: section.headerViewModel)
 				return sectionHeader
@@ -272,6 +263,11 @@ private extension ProfileViewController {
 }
 
 extension ProfileViewController: ProfileViewDisplayale {
+	func displayView(with sections: [Section]) {
+		createDatasource()
+		reloadData(with: sections)
+	}
+
 	func reloadData(with datasource: [Section]) {
 		var snapshot = NSDiffableDataSourceSnapshot<Section, Repository>()
 		snapshot.appendSections(datasource)

@@ -9,8 +9,7 @@
 import Foundation
 import Apollo
 
-public class GraphQLProvider {
-	private let service: Service
+public class GraphQLProvider: GraphQLProviderProtocol {
 	private(set) lazy var client: ApolloClient = {
 		let cache = InMemoryNormalizedCache()
 		let store = ApolloStore(cache: cache)
@@ -26,6 +25,8 @@ public class GraphQLProvider {
 
 		return ApolloClient(networkTransport: requestChainTransport, store: store)
 	}()
+
+	public let service: Service
 
 	public init(service: Service) {
 		self.service = service

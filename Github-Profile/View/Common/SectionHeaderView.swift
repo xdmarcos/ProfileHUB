@@ -75,7 +75,7 @@ class SectionHeaderView: UICollectionReusableView {
 	}
 
 	required init?(coder aDecoder: NSCoder) {
-		fatalError("Stop trying to make storyboards happen.")
+		fatalError("init(coder:) has not been implemented")
 	}
 }
 

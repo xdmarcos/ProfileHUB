@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		A573A8F12778EB7F00B30B5E /* GitHubService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573A8F02778EB7F00B30B5E /* GitHubService.swift */; };
 		A573A8F42778F0D100B30B5E /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = A573A8F32778F0D100B30B5E /* Apollo */; };
+		A573A8F62778F38600B30B5E /* ProfileRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573A8F52778F38600B30B5E /* ProfileRepositoryProtocol.swift */; };
+		A573A8F82778F65000B30B5E /* ProfileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573A8F72778F65000B30B5E /* ProfileRepository.swift */; };
+		A573A8FA2778F70300B30B5E /* GraphQLProviderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573A8F92778F70300B30B5E /* GraphQLProviderProtocol.swift */; };
+		A573A8FC2778FC0600B30B5E /* RepositoryError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573A8FB2778FC0600B30B5E /* RepositoryError.swift */; };
+		A573A8FE2778FCF500B30B5E /* UserProfileQueryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573A8FD2778FCF500B30B5E /* UserProfileQueryResponse.swift */; };
+		A573A900277906A000B30B5E /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573A8FF277906A000B30B5E /* Helpers.swift */; };
 		A592BD4E277601EE0019DC82 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A592BD4A277601EE0019DC82 /* Repository.swift */; };
 		A592BD4F277601EE0019DC82 /* HeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A592BD4B277601EE0019DC82 /* HeaderViewModel.swift */; };
 		A592BD50277601EE0019DC82 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = A592BD4C277601EE0019DC82 /* Section.swift */; };
@@ -52,6 +58,12 @@
 
 /* Begin PBXFileReference section */
 		A573A8F02778EB7F00B30B5E /* GitHubService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubService.swift; sourceTree = "<group>"; };
+		A573A8F52778F38600B30B5E /* ProfileRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRepositoryProtocol.swift; sourceTree = "<group>"; };
+		A573A8F72778F65000B30B5E /* ProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRepository.swift; sourceTree = "<group>"; };
+		A573A8F92778F70300B30B5E /* GraphQLProviderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphQLProviderProtocol.swift; sourceTree = "<group>"; };
+		A573A8FB2778FC0600B30B5E /* RepositoryError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryError.swift; sourceTree = "<group>"; };
+		A573A8FD2778FCF500B30B5E /* UserProfileQueryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileQueryResponse.swift; sourceTree = "<group>"; };
+		A573A8FF277906A000B30B5E /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		A592BD472775FE040019DC82 /* profilehub-shared.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "profilehub-shared.xcconfig"; sourceTree = "<group>"; };
 		A592BD4A277601EE0019DC82 /* Repository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		A592BD4B277601EE0019DC82 /* HeaderViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderViewModel.swift; sourceTree = "<group>"; };
@@ -122,6 +134,9 @@
 		A56B19EF2778A6E900150B50 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				A573A8FB2778FC0600B30B5E /* RepositoryError.swift */,
+				A573A8F52778F38600B30B5E /* ProfileRepositoryProtocol.swift */,
+				A573A8F72778F65000B30B5E /* ProfileRepository.swift */,
 				A56B19F02778A6F500150B50 /* GraphQL */,
 			);
 			path = Repository;
@@ -130,6 +145,7 @@
 		A56B19F02778A6F500150B50 /* GraphQL */ = {
 			isa = PBXGroup;
 			children = (
+				A5D866C52778B23E002CE949 /* GraphQLAPI.swift */,
 				A5D866C32778B18C002CE949 /* schema.json */,
 				A5D866CB2778D25D002CE949 /* UserProfileRepos.graphql */,
 				A5D866C12778B145002CE949 /* UserProfile.graphql */,
@@ -155,6 +171,7 @@
 				A592BD4A277601EE0019DC82 /* Repository.swift */,
 				A592BD4B277601EE0019DC82 /* HeaderViewModel.swift */,
 				A592BD4D277601EE0019DC82 /* SectionHeaderViewModel.swift */,
+				A573A8FD2778FCF500B30B5E /* UserProfileQueryResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -199,7 +216,6 @@
 		A5D866C42778B1DE002CE949 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				A5D866C52778B23E002CE949 /* GraphQLAPI.swift */,
 				A573A8F02778EB7F00B30B5E /* GitHubService.swift */,
 				A5D866CE2778DC49002CE949 /* Client */,
 			);
@@ -211,11 +227,13 @@
 			children = (
 				A5D866DB2778E62F002CE949 /* Service.swift */,
 				A5D866D52778DE0E002CE949 /* Token.swift */,
+				A573A8F92778F70300B30B5E /* GraphQLProviderProtocol.swift */,
 				A5D866CC2778DAC5002CE949 /* GraphQLProvider.swift */,
 				A5D866CF2778DC6F002CE949 /* NetworkInterceptorProvider.swift */,
 				A5D866D92778E498002CE949 /* AuthTokenInterceptor.swift */,
 				A5D866D72778DF33002CE949 /* RequestLoggingInterceptor.swift */,
 				A5D866D12778DCBA002CE949 /* ResponseLoggingInterceptor.swift */,
+				A573A8FF277906A000B30B5E /* Helpers.swift */,
 			);
 			path = Client;
 			sourceTree = "<group>";
@@ -245,8 +263,8 @@
 				A592BD48277601A60019DC82 /* Model */,
 				A5E57D3827723F4400DD0ECD /* View */,
 				A592BD49277601AD0019DC82 /* Presenter */,
-				A5D866C42778B1DE002CE949 /* Services */,
 				A56B19EF2778A6E900150B50 /* Repository */,
+				A5D866C42778B1DE002CE949 /* Services */,
 			);
 			path = "Github-Profile";
 			sourceTree = "<group>";
@@ -417,7 +435,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Go to the build root and search up the chain to find the Derived Data Path where the source packages are checked out.\nDERIVED_DATA_CANDIDATE=\"${BUILD_ROOT}\"\n\nwhile ! [ -d \"${DERIVED_DATA_CANDIDATE}/SourcePackages\" ]; do\n  if [ \"${DERIVED_DATA_CANDIDATE}\" = / ]; then\n    echo >&2 \"error: Unable to locate SourcePackages directory from BUILD_ROOT: '${BUILD_ROOT}'\"\n    exit 1\n  fi\n\n  DERIVED_DATA_CANDIDATE=\"$(dirname \"${DERIVED_DATA_CANDIDATE}\")\"\ndone\n\n# Grab a reference to the directory where scripts are checked out\nSCRIPT_PATH=\"${DERIVED_DATA_CANDIDATE}/SourcePackages/checkouts/apollo-ios/scripts\"\n\nif [ -z \"${SCRIPT_PATH}\" ]; then\n    echo >&2 \"error: Couldn't find the CLI script in your checked out SPM packages; make sure to add the framework to your project.\"\n    exit 1\nfi\n\ncd \"${SRCROOT}/${TARGET_NAME}\"\n\"${SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --target=swift --includes=./Repository/GraphQL/*.graphql --localSchemaFile=\"./Repository/GraphQL/schema.json\" ./Services/GraphQLAPI.swift\n";
+			shellScript = "# Go to the build root and search up the chain to find the Derived Data Path where the source packages are checked out.\nDERIVED_DATA_CANDIDATE=\"${BUILD_ROOT}\"\n\nwhile ! [ -d \"${DERIVED_DATA_CANDIDATE}/SourcePackages\" ]; do\n  if [ \"${DERIVED_DATA_CANDIDATE}\" = / ]; then\n    echo >&2 \"error: Unable to locate SourcePackages directory from BUILD_ROOT: '${BUILD_ROOT}'\"\n    exit 1\n  fi\n\n  DERIVED_DATA_CANDIDATE=\"$(dirname \"${DERIVED_DATA_CANDIDATE}\")\"\ndone\n\n# Grab a reference to the directory where scripts are checked out\nSCRIPT_PATH=\"${DERIVED_DATA_CANDIDATE}/SourcePackages/checkouts/apollo-ios/scripts\"\n\nif [ -z \"${SCRIPT_PATH}\" ]; then\n    echo >&2 \"error: Couldn't find the CLI script in your checked out SPM packages; make sure to add the framework to your project.\"\n    exit 1\nfi\n\ncd \"${SRCROOT}/${TARGET_NAME}\"\n\"${SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --target=swift --includes=./Repository/GraphQL/*.graphql --localSchemaFile=\"./Repository/GraphQL/schema.json\" ./Repository/GraphQL/GraphQLAPI.swift\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -426,11 +444,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A573A8FC2778FC0600B30B5E /* RepositoryError.swift in Sources */,
 				A5D866DA2778E498002CE949 /* AuthTokenInterceptor.swift in Sources */,
 				A5D866D22778DCBA002CE949 /* ResponseLoggingInterceptor.swift in Sources */,
 				A5E57D3627723D7A00DD0ECD /* ScreenStackProtocol.swift in Sources */,
+				A573A8F62778F38600B30B5E /* ProfileRepositoryProtocol.swift in Sources */,
+				A573A8FA2778F70300B30B5E /* GraphQLProviderProtocol.swift in Sources */,
 				A592BD58277602DB0019DC82 /* HeaderView.swift in Sources */,
 				A592BD51277601EE0019DC82 /* SectionHeaderViewModel.swift in Sources */,
+				A573A8F82778F65000B30B5E /* ProfileRepository.swift in Sources */,
 				A573A8F12778EB7F00B30B5E /* GitHubService.swift in Sources */,
 				A5D866D02778DC6F002CE949 /* NetworkInterceptorProvider.swift in Sources */,
 				A5D866D82778DF33002CE949 /* RequestLoggingInterceptor.swift in Sources */,
@@ -448,8 +470,10 @@
 				A592BD5E277603070019DC82 /* ProfileViewController.swift in Sources */,
 				A592BD5A277602DB0019DC82 /* RepositoryTileCell.swift in Sources */,
 				A592BD5F277603070019DC82 /* ProfileView.swift in Sources */,
+				A573A900277906A000B30B5E /* Helpers.swift in Sources */,
 				A5D866CD2778DAC5002CE949 /* GraphQLProvider.swift in Sources */,
 				A592BD4F277601EE0019DC82 /* HeaderViewModel.swift in Sources */,
+				A573A8FE2778FCF500B30B5E /* UserProfileQueryResponse.swift in Sources */,
 				A5D866D62778DE0E002CE949 /* Token.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
