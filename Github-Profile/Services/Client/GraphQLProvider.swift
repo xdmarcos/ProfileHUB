@@ -26,9 +26,9 @@ public class GraphQLProvider: GraphQLProviderProtocol {
 		return ApolloClient(networkTransport: requestChainTransport, store: store)
 	}()
 
-	public let service: Service
+	public let service: GraphQLService
 
-	public init(service: Service) {
+	public init(service: GraphQLService) {
 		self.service = service
 	}
 }

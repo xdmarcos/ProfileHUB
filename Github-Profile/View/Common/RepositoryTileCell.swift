@@ -32,6 +32,8 @@ class RepositoryTileCell: UICollectionViewCell {
 		static let titleFontSize: CGFloat = 14
 		static let bodyFontSize: CGFloat = 16
 		static let numberOfLines: Int = 1
+		static let stackSpacing: CGFloat = 4
+		static let smallImageSize: CGFloat = 12
 		static let textColor: UIColor = .label
 		static let backgroundColor: UIColor = .systemBackground
 		static let placeholderImage = "octocat"
@@ -47,6 +49,10 @@ class RepositoryTileCell: UICollectionViewCell {
 			static let repoDescriptionLabel = "RepositoryTileRepoDescriptionLabel"
 			static let starsLabel = "RepositoryTileStarsLabel"
 			static let languageLabel = "RepositoryTileLanguageLabel"
+			static let starsImage = "RepositoryTileStarsImage"
+			static let languageImage = "RepositoryTileLanguageImage"
+			static let starsStackView = "RepositoryTileStarsStackView"
+			static let languageStackView  = "RepositoryTileLanguageStackView "
 		}
 	}
 
@@ -64,7 +70,7 @@ class RepositoryTileCell: UICollectionViewCell {
 
 	private var userImage: UIImageView = {
 		let userImage = UIImageView()
-		userImage.image = UIImage( named: ViewTraits.placeholderImage)
+		userImage.image = UIImage(named: ViewTraits.placeholderImage)
 		userImage.backgroundColor = .tertiarySystemBackground
 		userImage.contentMode = .scaleAspectFit
 		userImage.clipsToBounds = true
@@ -123,6 +129,41 @@ class RepositoryTileCell: UICollectionViewCell {
 		return languageLabel
 	}()
 
+	private var starsImage: UIImageView = {
+		let starsImage = UIImageView()
+		starsImage.image = UIImage(systemName: "star.fill")
+		starsImage.tintColor = .systemYellow // TODO: use Proper color
+		starsImage.contentMode = .scaleAspectFill
+		starsImage.accessibilityIdentifier = Accessibility.Identifier.starsImage
+		return starsImage
+	}()
+
+	private var languageImage: UIImageView = {
+		let languageImage = UIImageView()
+		languageImage.image = UIImage(systemName: "circle.fill")
+		languageImage.contentMode = .scaleAspectFill
+		languageImage.accessibilityIdentifier = Accessibility.Identifier.languageImage
+		return languageImage
+	}()
+
+	private var starsStackView: UIStackView = {
+		let starsStackView = UIStackView()
+		starsStackView.axis = .horizontal
+		starsStackView.alignment = .center
+		starsStackView.spacing = ViewTraits.stackSpacing
+		starsStackView.accessibilityIdentifier = Accessibility.Identifier.starsStackView
+		return starsStackView
+	}()
+
+	private var languageStackView: UIStackView = {
+		let languageStackView = UIStackView()
+		languageStackView.axis = .horizontal
+		languageStackView.alignment = .center
+		languageStackView.spacing = ViewTraits.stackSpacing
+		languageStackView.accessibilityIdentifier = Accessibility.Identifier.languageStackView
+		return languageStackView
+	}()
+
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 		setupUI()
@@ -148,6 +189,7 @@ extension RepositoryTileCell: ViewCellConfigurable {
 		repoDescriptionLabel.text = viewModel.repoDescription
 		starsLabel.text = viewModel.stars
 		languageLabel.text = viewModel.language
+		languageImage.tintColor = .systemRed // TODO: use viewModel.languageColor
 	}
 }
 
@@ -161,16 +203,24 @@ private extension RepositoryTileCell {
 		usernameLabel.translatesAutoresizingMaskIntoConstraints = false
 		repoTitleLabel.translatesAutoresizingMaskIntoConstraints = false
 		repoDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-		starsLabel.translatesAutoresizingMaskIntoConstraints = false
-		languageLabel.translatesAutoresizingMaskIntoConstraints = false
+		starsImage.translatesAutoresizingMaskIntoConstraints = false
+		languageImage.translatesAutoresizingMaskIntoConstraints = false
+		starsStackView.translatesAutoresizingMaskIntoConstraints = false
+		languageStackView.translatesAutoresizingMaskIntoConstraints = false
+		starsLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+
+		starsStackView.addArrangedSubview(starsImage)
+		starsStackView.addArrangedSubview(starsLabel)
+		languageStackView.addArrangedSubview(languageImage)
+		languageStackView.addArrangedSubview(languageLabel)
 
 		contentView.addSubview(tile)
 		tile.addSubview(userImage)
 		tile.addSubview(usernameLabel)
 		tile.addSubview(repoTitleLabel)
 		tile.addSubview(repoDescriptionLabel)
-		tile.addSubview(starsLabel)
-		tile.addSubview(languageLabel)
+		tile.addSubview(starsStackView)
+		tile.addSubview(languageStackView)
 
 		addCustomConstraints()
 	}
@@ -247,32 +297,37 @@ private extension RepositoryTileCell {
 				constant: ViewTraits.Margin.one.points
 			),
 
-			starsLabel.leadingAnchor.constraint(
+			starsImage.heightAnchor.constraint(equalToConstant: ViewTraits.smallImageSize),
+			starsImage.widthAnchor.constraint(equalToConstant: ViewTraits.smallImageSize),
+			languageImage.heightAnchor.constraint(equalToConstant: ViewTraits.smallImageSize),
+			languageImage.widthAnchor.constraint(equalToConstant: ViewTraits.smallImageSize),
+
+			starsStackView.leadingAnchor.constraint(
 				equalTo: tile.leadingAnchor,
 				constant: ViewTraits.Margin.two.points
 			),
-			starsLabel.topAnchor.constraint(
+			starsStackView.topAnchor.constraint(
 				equalTo: repoDescriptionLabel.bottomAnchor,
 				constant: ViewTraits.Margin.three.points
 			),
-			starsLabel.bottomAnchor.constraint(
+			starsStackView.bottomAnchor.constraint(
 				equalTo: tile.bottomAnchor,
 				constant: -ViewTraits.Margin.four.points
 			),
 
-			languageLabel.leadingAnchor.constraint(
-				equalTo: starsLabel.trailingAnchor,
+			languageStackView.leadingAnchor.constraint(
+				equalTo: starsStackView.trailingAnchor,
 				constant: ViewTraits.Margin.four.points
 			),
-			languageLabel.trailingAnchor.constraint(
+			languageStackView.trailingAnchor.constraint(
 				equalTo: tile.trailingAnchor,
 				constant: -ViewTraits.Margin.two.points
 			),
-			languageLabel.topAnchor.constraint(
-				equalTo: starsLabel.topAnchor
+			languageStackView.topAnchor.constraint(
+				equalTo: starsStackView.topAnchor
 			),
-			languageLabel.bottomAnchor.constraint(
-				equalTo: starsLabel.bottomAnchor
+			languageStackView.bottomAnchor.constraint(
+				equalTo: starsStackView.bottomAnchor
 			)
 		])
 	}

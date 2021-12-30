@@ -11,7 +11,7 @@ import Apollo
 
 protocol ProfilePresentable {
 	func viewDidLoad()
-	func section(for index: Int) -> Section
+	func section(for index: Int) -> Section?
 	func userProfileInfo() -> HeaderViewModel
 	func reloadData()
 }
@@ -20,16 +20,6 @@ final class ProfilePresenter: ProfilePresentable {
 	weak var view: ProfileViewDisplayale?
 
 	private static let userToFetch = "xdmarcos"
-	private static var userProfileInfoTemplate: HeaderViewModel {
-		HeaderViewModel(
-			name: "Name",
-			username: "username",
-			userImageUrl: "",
-			email: "email address",
-			following: "-",
-			followers: "-"
-		)
-	}
 	private var userProfile: UserProfileReposQuery.Data.User?
 	private var sections: [Section] = []
 	private let profileRepository: ProfileRepositoryProtocol
@@ -48,13 +38,15 @@ final class ProfilePresenter: ProfilePresentable {
 		}
 	}
 
-	func section(for index: Int) -> Section {
-		sections[index]
+	func section(for index: Int) -> Section? {
+		// TODO: use safe?
+		guard index >= 0 && index < sections.count else { return nil }
+		return sections[index]
 	}
 
 	func userProfileInfo() -> HeaderViewModel {
 		guard let userProfileInfo = userProfile else {
-			return Self.userProfileInfoTemplate
+			return .placeholder
 		}
 
 		return HeaderViewModel(
@@ -68,7 +60,13 @@ final class ProfilePresenter: ProfilePresentable {
 	}
 
 	func reloadData() {
-		// fetch data and reload
+		getSections { [weak self] result in
+			guard let self = self,
+				  let newSections = try? result.get() else { return }
+
+			self.sections = newSections
+			self.view?.reloadData(with: newSections)
+		}
 	}
 }
 

@@ -13,6 +13,16 @@ protocol ProfileViewDisplayale: AnyObject {
 }
 
 final class ProfileViewController: UIViewController {
+	private enum ViewTraits {
+		static let verticalSectionEstimatedHeight: CGFloat = 630
+		static let horizontalSectionEstimatedHeight: CGFloat = 210
+		static let sectionHeaderEstimatedHeight: CGFloat = 80
+		static let headerEstimatedHeight: CGFloat = 210
+		static let viewBottomMargin: CGFloat = 25
+		static let commonSpacing: CGFloat = 15
+		static let interSectionSpacing: CGFloat = 30
+	}
+
 	private let presenter: ProfilePresentable
 	private let sceneView = ProfileView()
 	private var refreshControl = UIRefreshControl()
@@ -45,6 +55,7 @@ final class ProfileViewController: UIViewController {
 
 	@objc func refresh(_: AnyObject) {
 		presenter.reloadData()
+		refreshControl.beginRefreshing()
 	}
 }
 
@@ -82,9 +93,8 @@ private extension ProfileViewController {
 private extension ProfileViewController {
 	func createCompositionalLayout() -> UICollectionViewLayout {
 		let layout = UICollectionViewCompositionalLayout { [weak self] sectionIndex, layoutEnvironment in
-			guard let self = self else { return nil }
-
-			let section = self.presenter.section(for: sectionIndex)
+			guard let self = self,
+				  let section = self.presenter.section(for: sectionIndex) else { return nil }
 
 			switch section.type {
 			case .pinned:
@@ -96,7 +106,7 @@ private extension ProfileViewController {
 		}
 
 		let config = UICollectionViewCompositionalLayoutConfiguration()
-		config.interSectionSpacing = 30
+		config.interSectionSpacing = ViewTraits.interSectionSpacing
 		let boundaryHeader = createBoundaryHeader()
 		config.boundarySupplementaryItems = [boundaryHeader]
 
@@ -112,11 +122,16 @@ private extension ProfileViewController {
 		)
 
 		let layoutItem = NSCollectionLayoutItem(layoutSize: itemSize)
-		layoutItem.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 15, bottom: 15, trailing: 15)
+		layoutItem.contentInsets = NSDirectionalEdgeInsets(
+			top: 0,
+			leading: ViewTraits.commonSpacing,
+			bottom: ViewTraits.commonSpacing,
+			trailing: ViewTraits.commonSpacing
+		)
 
 		let layoutGroupSize = NSCollectionLayoutSize(
 			widthDimension: .fractionalWidth(1),
-			heightDimension: .estimated(630)
+			heightDimension: .estimated(ViewTraits.verticalSectionEstimatedHeight)
 		)
 		let layoutGroup = NSCollectionLayoutGroup.vertical(
 			layoutSize: layoutGroupSize,
@@ -138,11 +153,16 @@ private extension ProfileViewController {
 		)
 
 		let layoutItem = NSCollectionLayoutItem(layoutSize: itemSize)
-		layoutItem.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 15)
+		layoutItem.contentInsets = NSDirectionalEdgeInsets(
+			top: 0,
+			leading: 0,
+			bottom: 0,
+			trailing: ViewTraits.commonSpacing
+		)
 
 		let layoutGroupSize = NSCollectionLayoutSize(
 			widthDimension: .fractionalWidth(0.7),
-			heightDimension: .estimated(210)
+			heightDimension: .estimated(ViewTraits.horizontalSectionEstimatedHeight)
 		)
 
 		let layoutGroup = NSCollectionLayoutGroup.horizontal(
@@ -156,9 +176,19 @@ private extension ProfileViewController {
 		let layoutSectionHeader = createSectionHeader()
 		layoutSection.boundarySupplementaryItems = [layoutSectionHeader]
 
-		var contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 0)
-		if case .starred = section.type{
-			contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 15, bottom: 20, trailing: 0)
+		var contentInsets = NSDirectionalEdgeInsets(
+			top: 0,
+			leading: ViewTraits.commonSpacing,
+			bottom: 0,
+			trailing: 0
+		)
+		if case .starred = section.type {
+			contentInsets = NSDirectionalEdgeInsets(
+				top: 0,
+				leading: ViewTraits.commonSpacing,
+				bottom: ViewTraits.viewBottomMargin,
+				trailing: 0
+			)
 		}
 
 		layoutSection.contentInsets = contentInsets
@@ -169,7 +199,7 @@ private extension ProfileViewController {
 	func createSectionHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
 		let layoutSectionHeaderSize = NSCollectionLayoutSize(
 			widthDimension: .fractionalWidth(1),
-			heightDimension: .estimated(80)
+			heightDimension: .estimated(ViewTraits.sectionHeaderEstimatedHeight)
 		)
 
 		let layoutSectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
@@ -177,7 +207,12 @@ private extension ProfileViewController {
 			elementKind: UICollectionView.elementKindSectionHeader,
 			alignment: .top
 		)
-		layoutSectionHeader.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 15)
+		layoutSectionHeader.contentInsets = NSDirectionalEdgeInsets(
+			top: 0,
+			leading: ViewTraits.commonSpacing,
+			bottom: 0,
+			trailing: ViewTraits.commonSpacing
+		)
 		layoutSectionHeader.zIndex = 0
 		return layoutSectionHeader
 	}
@@ -185,7 +220,7 @@ private extension ProfileViewController {
 	func createBoundaryHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
 		let headerSize = NSCollectionLayoutSize(
 			widthDimension: .fractionalWidth(1.0),
-			heightDimension: .estimated(210)
+			heightDimension: .estimated(ViewTraits.headerEstimatedHeight)
 		)
 		let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
 			layoutSize: headerSize,
@@ -202,9 +237,10 @@ private extension ProfileViewController {
 private extension ProfileViewController {
 	func createDatasource() {
 		dataSource = UICollectionViewDiffableDataSource<Section, Repository>(collectionView: sceneView.profileCollectionView) { [weak self] collectionView, indexPath, repository in
-			guard let self = self else { return nil }
+			guard let self = self,
+				  let section = self.presenter.section(for: indexPath.section) else { return nil }
 
-			switch self.presenter.section(for: indexPath.section).type {
+			switch section.type {
 			default:
 				return self.configure(
 					RepositoryTileCell.self,
@@ -269,13 +305,14 @@ extension ProfileViewController: ProfileViewDisplayale {
 	}
 
 	func reloadData(with datasource: [Section]) {
+		refreshControl.endRefreshing()
+
 		var snapshot = NSDiffableDataSourceSnapshot<Section, Repository>()
 		snapshot.appendSections(datasource)
 
 		for section in datasource {
 			snapshot.appendItems(section.items, toSection: section)
 		}
-
 		dataSource?.apply(snapshot)
 	}
 }

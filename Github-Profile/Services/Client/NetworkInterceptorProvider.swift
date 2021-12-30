@@ -11,9 +11,9 @@ import Apollo
 struct NetworkInterceptorProvider: InterceptorProvider {
 	private let store: ApolloStore
 	private let client: URLSessionClient
-	private let token: Token
+	private let token: GraphQLToken
 
-	init(store: ApolloStore, client: URLSessionClient, token: Token) {
+	init(store: ApolloStore, client: URLSessionClient, token: GraphQLToken) {
 		self.store = store
 		self.client = client
 		self.token = token

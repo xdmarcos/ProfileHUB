@@ -10,9 +10,9 @@ import Apollo
 
 class AuthTokenInterceptor: ApolloInterceptor {
 	private static let authHeaderKey = "Authorization"
-	private let authToken: Token
+	private let authToken: GraphQLToken
 
-	init(token: Token) {
+	init(token: GraphQLToken) {
 		authToken = token
 	}
 

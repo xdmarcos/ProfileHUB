@@ -31,7 +31,7 @@ class HeaderView: UICollectionReusableView {
 		static let headerFontSize: CGFloat = 24
 		static let titleFontSize: CGFloat = 14
 		static let bodyFontSize: CGFloat = 16
-		static let stackSpacing: CGFloat = 5
+		static let stackSpacing: CGFloat = 4
 		static let numberOfLines: Int = 1
 		static let textColor: UIColor = .label
 		static let backgroundColor: UIColor = .systemBackground
@@ -154,7 +154,7 @@ class HeaderView: UICollectionReusableView {
 	private var followingStackView: UIStackView = {
 		let followingStackView = UIStackView()
 		followingStackView.axis = .horizontal
-		followingStackView.alignment = .leading
+		followingStackView.alignment = .center
 		followingStackView.spacing = ViewTraits.stackSpacing
 		return followingStackView
 	}()
@@ -162,7 +162,7 @@ class HeaderView: UICollectionReusableView {
 	private var followersStackView: UIStackView = {
 		let followersStackView = UIStackView()
 		followersStackView.axis = .horizontal
-		followersStackView.alignment = .leading
+		followersStackView.alignment = .center
 		followersStackView.spacing = ViewTraits.stackSpacing
 		return followersStackView
 	}()

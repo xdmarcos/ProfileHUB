@@ -1,5 +1,5 @@
 // 
-// Service.swift
+// GraphQLService.swift
 // Github-Profile
 //
 // Created by Marcos González on 2021.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol Service {
+public protocol GraphQLService {
 	var url: URL { get }
-	var token: Token { get }
+	var token: GraphQLToken { get }
 }

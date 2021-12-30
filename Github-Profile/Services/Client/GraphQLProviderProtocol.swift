@@ -9,5 +9,5 @@
 import Foundation
 
 public protocol GraphQLProviderProtocol {
-	var service: Service { get }
+	var service: GraphQLService { get }
 }
