@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import CommonUI
+import ImageCache
 
 class HeaderView: UICollectionReusableView {
 	static let supplementaryViewKind = "HeaderSupplementaryView"
@@ -27,9 +29,9 @@ class HeaderView: UICollectionReusableView {
 				self.rawValue
 			}
 		}
-		static let imageSize: CGFloat = 80
-		static let headerFontSize: CGFloat = 24
-		static let titleFontSize: CGFloat = 14
+		static let imageSize: CGFloat = 88
+		static let headerFontSize: CGFloat = 32
+		static let titleFontSize: CGFloat = 16
 		static let bodyFontSize: CGFloat = 16
 		static let stackSpacing: CGFloat = 4
 		static let numberOfLines: Int = 1
@@ -53,6 +55,8 @@ class HeaderView: UICollectionReusableView {
 		}
 	}
 
+	private var imageCacheItem: ImageCacheItem?
+	
 	private var wrapper: UIView = {
 		let wrapper = UIView()
 		wrapper.backgroundColor = ViewTraits.backgroundColor
@@ -63,7 +67,7 @@ class HeaderView: UICollectionReusableView {
 
 	private var userImage: UIImageView = {
 		let userImage = UIImageView()
-		userImage.image = UIImage( named: ViewTraits.placeholderImage)
+		userImage.image = UIImage(named: ViewTraits.placeholderImage)
 		userImage.backgroundColor = .tertiarySystemBackground
 		userImage.contentMode = .scaleAspectFit
 		userImage.clipsToBounds = true
@@ -104,7 +108,7 @@ class HeaderView: UICollectionReusableView {
 
 	private var followingLabel: UILabel = {
 		let followingLabel = UILabel()
-		followingLabel.text = "following" // TODO: .localized
+		followingLabel.text = "profile_header_following_title".localized
 		followingLabel.textColor = ViewTraits.textColor
 		followingLabel.font = UIFontMetrics.default.scaledFont(for: UIFont.systemFont(ofSize: ViewTraits.bodyFontSize))
 		followingLabel.textAlignment = .left
@@ -115,7 +119,7 @@ class HeaderView: UICollectionReusableView {
 
 	private var followersLabel: UILabel = {
 		let followersLabel = UILabel()
-		followersLabel.text = "followers"// TODO: .localized
+		followersLabel.text = "profile_header_followers_title".localized
 		followersLabel.textColor = ViewTraits.textColor
 		followersLabel.font = UIFontMetrics.default.scaledFont(for: UIFont.systemFont(ofSize: ViewTraits.bodyFontSize))
 		followersLabel.textAlignment = .left
@@ -178,7 +182,8 @@ class HeaderView: UICollectionReusableView {
 
 	override func prepareForReuse() {
 		super.prepareForReuse()
-		userImage.image = UIImage(named: ViewTraits.placeholderImage)
+		guard let imageURL = imageCacheItem?.url else { return }
+		userImage.cancelImageLoad(imageURL)
 	}
 }
 
@@ -186,7 +191,16 @@ extension HeaderView: ViewCellConfigurable {
 	typealias ViewModel = HeaderViewModel
 
 	func configure(viewModel: HeaderViewModel) {
-//		userImage.image = viewModel.userImage // TODO: load image
+		if let imageURL = URL(string: viewModel.userImageUrl) {
+			let imageItem = ImageCacheItem(
+				image: nil,
+				url: imageURL,
+				placeHolderImage: UIImage(named: ViewTraits.placeholderImage)
+			)
+			imageCacheItem = imageItem
+			userImage.loadImage(for: imageItem, animated: true)
+		}
+
 		usernameLabel.text = viewModel.username
 		nameLabel.text = viewModel.name
 		emailLabel.text = viewModel.email
@@ -282,7 +296,7 @@ private extension HeaderView {
 			),
 			emailLabel.topAnchor.constraint(
 				equalTo: userImage.bottomAnchor,
-				constant: ViewTraits.Margin.two.points
+				constant: ViewTraits.Margin.three.points
 			),
 
 			followingStackView.leadingAnchor.constraint(
@@ -291,7 +305,7 @@ private extension HeaderView {
 			),
 			followingStackView.topAnchor.constraint(
 				equalTo: emailLabel.bottomAnchor,
-				constant: ViewTraits.Margin.three.points
+				constant: ViewTraits.Margin.two.points
 			),
 			followingStackView.bottomAnchor.constraint(
 				equalTo: wrapper.bottomAnchor,

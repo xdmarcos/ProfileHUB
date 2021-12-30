@@ -8,5 +8,21 @@
 
 "profile_summary_title" = "Profile";
 "profile_refresh_title" = "Pull to refresh";
+
 "general_alert_error_title" = "Error";
 "general_alert_error_button_ok" = "OK";
+
+"profile_sections_title_pinned" = "Pinned";
+"profile_sections_title_top" = "Top repositories";
+"profile_sections_title_starred" = "Starred repositories";
+"profile_sections_pinned_action_title" = "View all";
+"profile_sections_top_action_title" = "View all";
+"profile_sections_starred_action_title" = "View all";
+
+"profile_header_name_placeholder" = "Name";
+"profile_header_username_placeholder" = "username";
+"profile_header_email_placeholder" = "email address";
+"profile_header_followers_title" = "followers";
+"profile_header_following_title" = "following";
+
+"profile_repository_language_placeholder" = "Text";

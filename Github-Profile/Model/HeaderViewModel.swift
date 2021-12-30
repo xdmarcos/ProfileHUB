@@ -16,13 +16,12 @@ struct HeaderViewModel: Hashable {
 	let following: String
 	let followers: String
 
-	// TODO: Localize
 	static var placeholder: HeaderViewModel {
 		HeaderViewModel(
-			name: "Name",
-			username: "username",
+			name: "profile_header_name_placeholder".localized,
+			username: "profile_header_username_placeholder".localized,
 			userImageUrl: "",
-			email: "email address",
+			email: "profile_header_email_placeholder".localized,
 			following: "-",
 			followers: "-"
 		)

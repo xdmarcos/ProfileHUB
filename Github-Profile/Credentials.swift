@@ -9,5 +9,5 @@
 import Foundation
 
 enum Credentials {
-	static let ghPersonalToken = "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"
+	static let ghPersonalToken = "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"
 }

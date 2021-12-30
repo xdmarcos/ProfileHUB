@@ -8,5 +8,21 @@
 
 "profile_summary_title" = "Profiel";
 "profile_refresh_title" = "Trek om te vernieuwen";
+
 "general_alert_error_title" = "Error";
 "general_alert_error_button_ok" = "OK";
+
+"profile_sections_title_pinned" = "Vastgezet";
+"profile_sections_title_top" = "Topbronnen";
+"profile_sections_title_starred" = "Repository's met ster";
+"profile_sections_pinned_action_title" = "Bekijk alles";
+"profile_sections_top_action_title" = "Bekijk alles";
+"profile_sections_starred_action_title" = "Bekijk alles";
+
+"profile_header_name_placeholder" = "Naam";
+"profile_header_username_placeholder" = "username";
+"profile_header_email_placeholder" = "e-mailadres";
+"profile_header_followers_title" = "followers";
+"profile_header_following_title" = "following";
+
+"profile_repository_language_placeholder" = "Text";

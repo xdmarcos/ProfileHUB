@@ -39,9 +39,7 @@ final class ProfilePresenter: ProfilePresentable {
 	}
 
 	func section(for index: Int) -> Section? {
-		// TODO: use safe?
-		guard index >= 0 && index < sections.count else { return nil }
-		return sections[index]
+		sections[safe: index]
 	}
 
 	func userProfileInfo() -> HeaderViewModel {
@@ -145,9 +143,10 @@ private extension ProfilePresenter {
 		if let nodesType = items as? [UserProfileReposQuery.Data.User.PinnedItem.Node] {
 			repoItems = nodesType.compactMap { item in
 				guard let repo = item.asRepository else { return nil }
-				var langName: String = ""
+				var langName: String = "profile_repository_language_placeholder".localized
 				var langColor: String = ""
-				if let first = repo.languages?.nodes?.first, let language = first {
+				if let first = repo.languages?.nodes?.first,
+					let language = first {
 					langName = language.name
 					langColor = language.color ?? "#FFA036"
 				}
@@ -164,9 +163,10 @@ private extension ProfilePresenter {
 			}
 		} else if let nodesType = items as? [UserProfileReposQuery.Data.User.TopRepository.Node] {
 			repoItems = nodesType.compactMap { repo in
-				var langName: String = ""
+				var langName: String = "profile_repository_language_placeholder".localized
 				var langColor: String = ""
-				if let first = repo.languages?.nodes?.first, let language = first {
+				if let first = repo.languages?.nodes?.first,
+				   let language = first {
 					langName = language.name
 					langColor = language.color ?? "#FFA036"
 				}
@@ -183,9 +183,10 @@ private extension ProfilePresenter {
 			}
 		} else if let nodesType = items as? [UserProfileReposQuery.Data.User.StarredRepository.Node] {
 			repoItems = nodesType.compactMap { repo in
-				var langName: String = ""
+				var langName: String = "profile_repository_language_placeholder".localized
 				var langColor: String = ""
-				if let first = repo.languages?.nodes?.first, let language = first {
+				if let first = repo.languages?.nodes?.first,
+				   let language = first {
 					langName = language.name
 					langColor = language.color ?? "#FFA036"
 				}

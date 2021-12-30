@@ -53,8 +53,7 @@ private extension ProfileView {
 		accessibilityIdentifier = Accessibility.Identifier.rootView
 		backgroundColor = ViewTraits.backgroundColor
 
-		profileCollectionView.translatesAutoresizingMaskIntoConstraints = false
-		addSubview(profileCollectionView)
+		addSubviewForAutolayout(subview: profileCollectionView)
 
 		addCustomConstraints()
 	}

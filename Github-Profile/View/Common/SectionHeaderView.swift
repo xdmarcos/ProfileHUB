@@ -7,18 +7,20 @@
 //
 
 import UIKit
+import CommonUI
 
 class SectionHeaderView: UICollectionReusableView {
 	private enum ViewTraits {
 		static let contentInset = UIEdgeInsets(
 			top: 0,
 			left: 0,
-			bottom: 20,
+			bottom: 16,
 			right: 0
 		)
 
-		static let titleFontSize: CGFloat = 22
-		static let actionFontSize: CGFloat = 18
+		static let titleFontSize: CGFloat = 24
+		static let actionFontSize: CGFloat = 16
+		static let stackSpacing: CGFloat = 4
 		static let numberOfLines: Int = 1
 		static let textColor: UIColor = .label
 		static let backgroundColor: UIColor = .systemBackground
@@ -65,6 +67,8 @@ class SectionHeaderView: UICollectionReusableView {
 	private var stackView: UIStackView = {
 		let stackView = UIStackView()
 		stackView.axis = .horizontal
+		stackView.distribution = .fill
+		stackView.spacing = ViewTraits.stackSpacing
 		stackView.accessibilityIdentifier = Accessibility.Identifier.stackView
 		return stackView
 	}()

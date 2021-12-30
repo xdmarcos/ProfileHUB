@@ -8,5 +8,21 @@
 
 "profile_summary_title" = "Perfil";
 "profile_refresh_title" = "Tira para refrescar";
+
 "general_alert_error_title" = "Error";
 "general_alert_error_button_ok" = "OK";
+
+"profile_sections_title_pinned" = "Anclados";
+"profile_sections_title_top" = "Principales repositorios";
+"profile_sections_title_starred" = "Repositorios destacados";
+"profile_sections_pinned_action_title" = "Todos";
+"profile_sections_top_action_title" = "Todos";
+"profile_sections_starred_action_title" = "Todos";
+
+"profile_header_name_placeholder" = "Nombre";
+"profile_header_username_placeholder" = "usuario";
+"profile_header_email_placeholder" = "Correo electrónico";
+"profile_header_followers_title" = "seguidores";
+"profile_header_following_title" = "siguiendo";
+
+"profile_repository_language_placeholder" = "Text";

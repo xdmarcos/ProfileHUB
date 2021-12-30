@@ -1,6 +1,6 @@
-// 
+//
 // ViewConfigurable.swift
-// Github-Profile
+// CommonUI
 //
 // Created by Marcos González on 2021.
 // 

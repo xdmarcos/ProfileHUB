@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A5577037277DD748002964E7 /* Common in Frameworks */ = {isa = PBXBuildFile; productRef = A5577036277DD748002964E7 /* Common */; };
+		A5577039277DD74F002964E7 /* CommonUI in Frameworks */ = {isa = PBXBuildFile; productRef = A5577038277DD74F002964E7 /* CommonUI */; };
+		A5577048277E02D5002964E7 /* ImageCache in Frameworks */ = {isa = PBXBuildFile; productRef = A5577047277E02D5002964E7 /* ImageCache */; };
+		A557704A277E23B6002964E7 /* ProfileViewController+FlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5577049277E23B6002964E7 /* ProfileViewController+FlowLayout.swift */; };
+		A557704C277E2664002964E7 /* ProfileViewController+Datasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A557704B277E2664002964E7 /* ProfileViewController+Datasource.swift */; };
 		A573A8F12778EB7F00B30B5E /* GitHubService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573A8F02778EB7F00B30B5E /* GitHubService.swift */; };
 		A573A8F42778F0D100B30B5E /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = A573A8F32778F0D100B30B5E /* Apollo */; };
 		A573A8F62778F38600B30B5E /* ProfileRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573A8F52778F38600B30B5E /* ProfileRepositoryProtocol.swift */; };
@@ -23,7 +28,6 @@
 		A592BD58277602DB0019DC82 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A592BD54277602DB0019DC82 /* HeaderView.swift */; };
 		A592BD59277602DB0019DC82 /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A592BD55277602DB0019DC82 /* SectionHeaderView.swift */; };
 		A592BD5A277602DB0019DC82 /* RepositoryTileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A592BD56277602DB0019DC82 /* RepositoryTileCell.swift */; };
-		A592BD5B277602DB0019DC82 /* ViewConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A592BD57277602DB0019DC82 /* ViewConfigurable.swift */; };
 		A592BD5E277603070019DC82 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A592BD5C277603070019DC82 /* ProfileViewController.swift */; };
 		A592BD5F277603070019DC82 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A592BD5D277603070019DC82 /* ProfileView.swift */; };
 		A592BD61277603340019DC82 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A592BD60277603340019DC82 /* ProfilePresenter.swift */; };
@@ -58,6 +62,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A5577049277E23B6002964E7 /* ProfileViewController+FlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileViewController+FlowLayout.swift"; sourceTree = "<group>"; };
+		A557704B277E2664002964E7 /* ProfileViewController+Datasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileViewController+Datasource.swift"; sourceTree = "<group>"; };
 		A573A8F02778EB7F00B30B5E /* GitHubService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubService.swift; sourceTree = "<group>"; };
 		A573A8F52778F38600B30B5E /* ProfileRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRepositoryProtocol.swift; sourceTree = "<group>"; };
 		A573A8F72778F65000B30B5E /* ProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRepository.swift; sourceTree = "<group>"; };
@@ -74,7 +80,6 @@
 		A592BD54277602DB0019DC82 /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		A592BD55277602DB0019DC82 /* SectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
 		A592BD56277602DB0019DC82 /* RepositoryTileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryTileCell.swift; sourceTree = "<group>"; };
-		A592BD57277602DB0019DC82 /* ViewConfigurable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewConfigurable.swift; sourceTree = "<group>"; };
 		A592BD5C277603070019DC82 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		A592BD5D277603070019DC82 /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		A592BD60277603340019DC82 /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
@@ -119,7 +124,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5577039277DD74F002964E7 /* CommonUI in Frameworks */,
+				A5577048277E02D5002964E7 /* ImageCache in Frameworks */,
 				A573A8F42778F0D100B30B5E /* Apollo in Frameworks */,
+				A5577037277DD748002964E7 /* Common in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,12 +141,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A5577035277DD748002964E7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		A56B19EF2778A6E900150B50 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
-				A573A8FB2778FC0600B30B5E /* RepositoryError.swift */,
-				A573A8F52778F38600B30B5E /* ProfileRepositoryProtocol.swift */,
 				A573A8F72778F65000B30B5E /* ProfileRepository.swift */,
+				A573A8F52778F38600B30B5E /* ProfileRepositoryProtocol.swift */,
+				A573A8FB2778FC0600B30B5E /* RepositoryError.swift */,
 				A56B19F02778A6F500150B50 /* GraphQL */,
 			);
 			path = Repository;
@@ -191,6 +206,8 @@
 			children = (
 				A592BD5D277603070019DC82 /* ProfileView.swift */,
 				A592BD5C277603070019DC82 /* ProfileViewController.swift */,
+				A5577049277E23B6002964E7 /* ProfileViewController+FlowLayout.swift */,
+				A557704B277E2664002964E7 /* ProfileViewController+Datasource.swift */,
 				A592BD6227760CDC0019DC82 /* ProfileViewController+Build.swift */,
 			);
 			path = Profile;
@@ -202,7 +219,6 @@
 				A592BD56277602DB0019DC82 /* RepositoryTileCell.swift */,
 				A592BD54277602DB0019DC82 /* HeaderView.swift */,
 				A592BD55277602DB0019DC82 /* SectionHeaderView.swift */,
-				A592BD57277602DB0019DC82 /* ViewConfigurable.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -246,6 +262,7 @@
 				A5E57D0427723C6400DD0ECD /* Github-Profile */,
 				A5E57D1B27723C6F00DD0ECD /* Github-ProfileTests */,
 				A5E57D0327723C6400DD0ECD /* Products */,
+				A5577035277DD748002964E7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -333,6 +350,9 @@
 			name = "Github-Profile";
 			packageProductDependencies = (
 				A573A8F32778F0D100B30B5E /* Apollo */,
+				A5577036277DD748002964E7 /* Common */,
+				A5577038277DD74F002964E7 /* CommonUI */,
+				A5577047277E02D5002964E7 /* ImageCache */,
 			);
 			productName = "Github-Profile";
 			productReference = A5E57D0227723C6400DD0ECD /* Github-Profile.app */;
@@ -465,10 +485,10 @@
 				A592BD6327760CDC0019DC82 /* ProfileViewController+Build.swift in Sources */,
 				A592BD50277601EE0019DC82 /* Section.swift in Sources */,
 				A5E57D0627723C6400DD0ECD /* AppDelegate.swift in Sources */,
+				A557704A277E23B6002964E7 /* ProfileViewController+FlowLayout.swift in Sources */,
 				A592BD59277602DB0019DC82 /* SectionHeaderView.swift in Sources */,
 				A592BD61277603340019DC82 /* ProfilePresenter.swift in Sources */,
 				A5E57D0827723C6400DD0ECD /* SceneDelegate.swift in Sources */,
-				A592BD5B277602DB0019DC82 /* ViewConfigurable.swift in Sources */,
 				A5D866DC2778E62F002CE949 /* GraphQLService.swift in Sources */,
 				A592BD5E277603070019DC82 /* ProfileViewController.swift in Sources */,
 				A592BD5A277602DB0019DC82 /* RepositoryTileCell.swift in Sources */,
@@ -476,6 +496,7 @@
 				A573A9022779D1FE00B30B5E /* Credentials.swift in Sources */,
 				A573A900277906A000B30B5E /* Helpers.swift in Sources */,
 				A5D866CD2778DAC5002CE949 /* GraphQLProvider.swift in Sources */,
+				A557704C277E2664002964E7 /* ProfileViewController+Datasource.swift in Sources */,
 				A592BD4F277601EE0019DC82 /* HeaderViewModel.swift in Sources */,
 				A573A8FE2778FCF500B30B5E /* UserProfileQueryResponse.swift in Sources */,
 				A5D866D62778DE0E002CE949 /* GraphQLToken.swift in Sources */,
@@ -805,6 +826,18 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		A5577036277DD748002964E7 /* Common */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Common;
+		};
+		A5577038277DD74F002964E7 /* CommonUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CommonUI;
+		};
+		A5577047277E02D5002964E7 /* ImageCache */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ImageCache;
+		};
 		A573A8F32778F0D100B30B5E /* Apollo */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = A573A8F22778F0D100B30B5E /* XCRemoteSwiftPackageReference "apollo-ios" */;

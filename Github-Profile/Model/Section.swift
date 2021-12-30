@@ -18,11 +18,11 @@ struct Section: Identifiable, Hashable {
 			var title: String
 			switch self {
 			case .pinned:
-				title = "Pinned"
+				title = "profile_sections_title_pinned".localized
 			case .top:
-				title = "Top repositories"
+				title = "profile_sections_title_top".localized
 			case .starred:
-				title = "Starred repositories"
+				title = "profile_sections_title_starred".localized
 			}
 
 			return title
@@ -32,11 +32,11 @@ struct Section: Identifiable, Hashable {
 			var actionTitle: String
 			switch self {
 			case .pinned:
-				actionTitle = "View all"
+				actionTitle = "profile_sections_pinned_action_title".localized
 			case .top:
-				actionTitle = "View all"
+				actionTitle = "profile_sections_top_action_title".localized
 			case .starred:
-				actionTitle = "View all"
+				actionTitle = "profile_sections_starred_action_title".localized
 			}
 
 			return actionTitle

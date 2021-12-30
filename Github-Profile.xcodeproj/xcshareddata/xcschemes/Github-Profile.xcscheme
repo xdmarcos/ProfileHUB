@@ -38,16 +38,6 @@
                ReferencedContainer = "container:Github-Profile.xcodeproj">
             </BuildableReference>
          </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A5E57D2127723C6F00DD0ECD"
-               BuildableName = "Github-ProfileUITests.xctest"
-               BlueprintName = "Github-ProfileUITests"
-               ReferencedContainer = "container:Github-Profile.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
