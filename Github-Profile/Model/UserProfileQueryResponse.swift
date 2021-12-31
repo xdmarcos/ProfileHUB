@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct UserProfileQueryResponse {
+public struct UserProfileQueryResponse {
 	let userProfile:  UserProfile?
 	let graphQLError: Error?
 }

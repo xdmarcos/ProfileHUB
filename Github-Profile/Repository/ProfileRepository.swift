@@ -22,7 +22,7 @@ struct ProfileRepository: ProfileRepositoryProtocol {
 
 	func userProfileRepositories(
 		username: String,
-		completion: @escaping ProfileRepositoryProtocol.ProfileCompletion
+		completion: @escaping ProfileCompletion
 	) {
 		restetCacheIfNeeded()
 		fetchUserProfile(username, completion: completion)
@@ -47,7 +47,7 @@ private extension ProfileRepository {
 
 	func fetchUserProfile(
 		_ username: String,
-		completion: @escaping ProfileRepositoryProtocol.ProfileCompletion
+		completion: @escaping ProfileCompletion
 	) {
 		guard let provider = provider as? GraphQLProvider else { return }
 

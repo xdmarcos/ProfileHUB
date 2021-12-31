@@ -26,7 +26,7 @@ extension ProfileViewController {
 	func createCompositionalLayout() -> UICollectionViewLayout {
 		let layout = UICollectionViewCompositionalLayout { [weak self] sectionIndex, layoutEnvironment in
 			guard let self = self,
-				  let section = self.presenter.section(for: sectionIndex) else { return nil }
+				  let section = self.requestSectionFor(index: sectionIndex) else { return nil }
 
 			switch section.type {
 			case .pinned:

@@ -9,6 +9,5 @@
 import Foundation
 
 protocol ProfileRepositoryProtocol {
-	typealias ProfileCompletion = (Result<UserProfileQueryResponse, Error>) -> Void
 	func userProfileRepositories(username: String, completion: @escaping ProfileCompletion)
 }

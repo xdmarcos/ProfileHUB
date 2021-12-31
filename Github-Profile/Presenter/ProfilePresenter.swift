@@ -18,7 +18,7 @@ protocol ProfilePresentable {
 }
 
 final class ProfilePresenter: ProfilePresentable {
-	weak var view: ProfileViewDisplayale?
+	weak var view: ProfileViewDisplayable?
 
 	private var userProfile: UserProfile?
 	private var sections: [Section] = []

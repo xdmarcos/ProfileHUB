@@ -4,17 +4,4 @@
    <FileRef
       location = "group:Github-Profile.xcodeproj">
    </FileRef>
-   <Group
-      location = "group:Packages"
-      name = "Packages">
-      <FileRef
-         location = "group:Common">
-      </FileRef>
-      <FileRef
-         location = "group:CommonUI">
-      </FileRef>
-      <FileRef
-         location = "group:ImageCache">
-      </FileRef>
-   </Group>
 </Workspace>

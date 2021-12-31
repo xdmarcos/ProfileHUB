@@ -8,7 +8,7 @@
 import UIKit
 import CommonUI
 
-protocol ProfileViewDisplayale: AnyObject {
+protocol ProfileViewDisplayable: AnyObject {
 	func displayView(screenTitle: String, sections: [Section])
 	func reloadData(with sections: [Section])
 	func showLoaderIndicator()
@@ -50,13 +50,13 @@ final class ProfileViewController: UIViewController {
 		super.viewDidLoad()
 
 		setupUI()
-		presenter.viewDidLoad()
+		infornViewDidLoad()
 	}
 
 	// MARK: Actions
 
-	@objc func refresh(_: AnyObject) {
-		presenter.reloadData()
+	@objc func refresh() {
+		requestReloadData()
 		refreshControl.beginRefreshing()
 	}
 }
@@ -66,7 +66,7 @@ private extension ProfileViewController {
 	func setupUI() {
 		title = "profile_loading_title".localized
 		refreshControl.attributedTitle = NSAttributedString(string: "profile_refresh_title".localized)
-		refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
+		refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
 		sceneView.profileCollectionView.refreshControl = refreshControl
 
 		sceneView.profileCollectionView.setCollectionViewLayout(
@@ -94,11 +94,33 @@ private extension ProfileViewController {
 
 extension ProfileViewController: UICollectionViewDelegate {
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-		presenter.repositoryId(indexPath: indexPath)
+		requestRepositoy(indexPath: indexPath)
 	}
 }
 
-extension ProfileViewController: ProfileViewDisplayale {
+extension ProfileViewController {
+	func infornViewDidLoad() {
+		presenter.viewDidLoad()
+	}
+
+	func requestReloadData() {
+		presenter.reloadData()
+	}
+
+	func requestRepositoy(indexPath: IndexPath) {
+		presenter.repositoryId(indexPath: indexPath)
+	}
+
+	func requestSectionFor(index: Int) -> Section? {
+		presenter.section(for: index)
+	}
+
+	func requestUserProfileInfo() -> HeaderViewModel {
+		presenter.userProfileInfo()
+	}
+}
+
+extension ProfileViewController: ProfileViewDisplayable {
 	func displayView(screenTitle: String, sections: [Section]) {
 		title = screenTitle
 		profileDatasource = createDatasource()

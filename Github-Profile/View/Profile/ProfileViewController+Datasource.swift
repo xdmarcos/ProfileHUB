@@ -14,7 +14,7 @@ extension ProfileViewController {
 	func createDatasource() -> UICollectionViewDiffableDataSource<Section, Repository> {
 		let datasource = UICollectionViewDiffableDataSource<Section, Repository>(collectionView: sceneView.profileCollectionView) { [weak self] collectionView, indexPath, repository in
 			guard let self = self,
-				  let section = self.presenter.section(for: indexPath.section) else { return nil }
+				  let section = self.requestSectionFor(index: indexPath.section) else { return nil }
 
 			switch section.type {
 			default:
@@ -38,7 +38,7 @@ extension ProfileViewController {
 					return nil
 				}
 
-				sectionHeader.configure(viewModel: self.presenter.userProfileInfo())
+				sectionHeader.configure(viewModel: self.requestUserProfileInfo())
 				return sectionHeader
 			} else {
 				guard let sectionHeader = collectionView.dequeueReusableSupplementaryView(

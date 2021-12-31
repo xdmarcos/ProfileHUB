@@ -10,5 +10,5 @@ import Foundation
 
 enum QueryItems {
 	static let profileToFetch = "xdmarcos"
-	static let ghPersonalToken = "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"
+	static let ghPersonalToken = "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"
 }
