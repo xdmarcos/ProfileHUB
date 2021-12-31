@@ -15,6 +15,6 @@ struct GithubService: GraphQLService {
 
 	// TODO: hide credentials
 	var token: GraphQLToken {
-		GraphQLToken(type: .bearer, value: Credentials.ghPersonalToken)
+		GraphQLToken(type: .bearer, value: QueryItems.ghPersonalToken)
 	}
 }

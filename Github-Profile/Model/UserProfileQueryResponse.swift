@@ -9,6 +9,6 @@
 import Foundation
 
 struct UserProfileQueryResponse {
-	let userProfile:  UserProfileReposQuery.Data.User?
+	let userProfile:  UserProfile?
 	let graphQLError: Error?
 }

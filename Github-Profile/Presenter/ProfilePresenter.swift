@@ -19,8 +19,7 @@ protocol ProfilePresentable {
 final class ProfilePresenter: ProfilePresentable {
 	weak var view: ProfileViewDisplayale?
 
-	private static let userToFetch = "xdmarcos"
-	private var userProfile: UserProfileReposQuery.Data.User?
+	private var userProfile: UserProfile?
 	private var sections: [Section] = []
 	private let profileRepository: ProfileRepositoryProtocol
 
@@ -29,12 +28,15 @@ final class ProfilePresenter: ProfilePresentable {
 	}
 	
 	func viewDidLoad() {
-		getSections { [weak self] result in
-			guard let self = self,
-				  let newSections = try? result.get() else { return }
+		view?.showLoaderIndicator()
+		getUserFullProfile { [weak self] in
+			guard let self = self else { return }
 
-			self.sections = newSections
-			self.view?.displayView(with: newSections)
+			self.view?.hideLoaderIndicator()
+			self.view?.displayView(
+				screenTitle: "profile_summary_title".localized,
+				sections: self.sections
+			)
 		}
 	}
 
@@ -58,50 +60,54 @@ final class ProfilePresenter: ProfilePresentable {
 	}
 
 	func reloadData() {
-		getSections { [weak self] result in
-			guard let self = self,
-				  let newSections = try? result.get() else { return }
-
-			self.sections = newSections
-			self.view?.reloadData(with: newSections)
+		getUserFullProfile { [weak self] in
+			guard let self = self else { return }
+			self.view?.reloadData(with: self.sections)
 		}
 	}
 }
 
 private extension ProfilePresenter {
-	func getSections(completion: @escaping (Result<[Section], Error>) -> Void) {
+	func getUserFullProfile(completion: @escaping () -> Void) {
 		profileRepository.userProfileRepositories(
-			username: Self.userToFetch) { [weak self] result in
-				guard let self = self else { return }
+			username: QueryItems.profileToFetch
+		) { [weak self] result in
+			guard let self = self else { return }
 
-				switch result {
-				case let .success(response):
-					if let userProfileInfo = response.userProfile {
-						self.userProfile = userProfileInfo
-
-						let sections = self.createSections(userProfile: userProfileInfo)
-						completion(.success(sections))
-					}
-
-					if let graphqlError = response.graphQLError as? RepositoryError {
-						var errorMessage: String
-						switch graphqlError {
-						case let .generic(error):
-							errorMessage = error.localizedDescription
-						case let .graphQL(messsage):
-							errorMessage = messsage
-						}
-
-						print("GraphQL Error: \(errorMessage)")
-					}
-				case let .failure(error):
-					print("Error: \(error.localizedDescription)")
-					completion(.failure(error))
+			switch result {
+			case let .success(response):
+				if let userProfileInfo = response.userProfile {
+					let createdSections = self.createSections(userProfile: userProfileInfo)
+					self.userProfile = userProfileInfo
+					self.sections = createdSections
 				}
+
+				if let graphqlError = response.graphQLError as? RepositoryError {
+					var errorMessage: String
+					switch graphqlError {
+					case let .generic(error):
+						errorMessage = error.localizedDescription
+					case let .graphQL(messsage):
+						errorMessage = messsage
+					}
+
+					self.presentError(
+						title: "general_alert_graphQLerror_title".localized,
+						message: errorMessage
+					)
+				}
+				completion()
+			case let .failure(error):
+				self.presentError(
+					title: "general_alert_error_title".localized,
+					message: error.localizedDescription
+				)
+				completion()
 			}
+		}
 	}
 
-	func createSections(userProfile: UserProfileReposQuery.Data.User) -> [Section] {
+	func createSections(userProfile: UserProfile) -> [Section] {
 		var sections: [Section] = []
 
 		if let pinned = userProfile.pinnedItems.nodes {
@@ -140,13 +146,13 @@ private extension ProfilePresenter {
 	func createRepoList<T: GraphQLSelectionSet>(items: [T?]) -> [Repository] {
 		var repoItems: [Repository] = []
 
-		if let nodesType = items as? [UserProfileReposQuery.Data.User.PinnedItem.Node] {
+		if let nodesType = items as? [PinnedReposNode] {
 			repoItems = nodesType.compactMap { item in
 				guard let repo = item.asRepository else { return nil }
 				var langName: String = "profile_repository_language_placeholder".localized
 				var langColor: String = ""
 				if let first = repo.languages?.nodes?.first,
-					let language = first {
+				   let language = first {
 					langName = language.name
 					langColor = language.color ?? "#FFA036"
 				}
@@ -161,7 +167,7 @@ private extension ProfilePresenter {
 					languageColor: langColor
 				)
 			}
-		} else if let nodesType = items as? [UserProfileReposQuery.Data.User.TopRepository.Node] {
+		} else if let nodesType = items as? [TopReposNode] {
 			repoItems = nodesType.compactMap { repo in
 				var langName: String = "profile_repository_language_placeholder".localized
 				var langColor: String = ""
@@ -181,7 +187,7 @@ private extension ProfilePresenter {
 					languageColor: langColor
 				)
 			}
-		} else if let nodesType = items as? [UserProfileReposQuery.Data.User.StarredRepository.Node] {
+		} else if let nodesType = items as? [StarredReposNode] {
 			repoItems = nodesType.compactMap { repo in
 				var langName: String = "profile_repository_language_placeholder".localized
 				var langColor: String = ""
@@ -204,5 +210,11 @@ private extension ProfilePresenter {
 		}
 
 		return repoItems
+	}
+
+	func presentError(title: String, message: String) {
+		DLog("Error: \(message)")
+		view?.hideLoaderIndicator()
+		view?.showErrorMessage(title: title, message: message)
 	}
 }

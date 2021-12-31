@@ -8,6 +8,7 @@
 
 "profile_summary_title" = "Perfil";
 "profile_refresh_title" = "Tira para refrescar";
+"profile_loading_title" = "Cargando...";
 
 "general_alert_error_title" = "Error";
 "general_alert_error_button_ok" = "OK";

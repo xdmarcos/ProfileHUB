@@ -6,13 +6,24 @@
 // 
 
 import UIKit
+import CommonUI
 
 protocol ProfileViewDisplayale: AnyObject {
-	func displayView(with sections: [Section])
+	func displayView(screenTitle: String, sections: [Section])
 	func reloadData(with sections: [Section])
+	func showLoaderIndicator()
+	func hideLoaderIndicator()
+	func showErrorMessage(title: String, message: String)
+}
+
+protocol ProfileViewControllerDelegate: AnyObject {
+	func navigateToDetail(repositoryID: String)
+	func navigateToAll(of type: Section.SectionType)
 }
 
 final class ProfileViewController: UIViewController {
+	weak var delegate: ProfileViewControllerDelegate?
+
 	private(set) var presenter: ProfilePresentable
 	private(set) var profileDatasource: UICollectionViewDiffableDataSource<Section, Repository>?
 	private(set) var sceneView = ProfileView()
@@ -52,8 +63,7 @@ final class ProfileViewController: UIViewController {
 // MARK: - Setup UI components
 private extension ProfileViewController {
 	func setupUI() {
-		title = "profile_summary_title".localized
-
+		title = "profile_loading_title".localized
 		refreshControl.attributedTitle = NSAttributedString(string: "profile_refresh_title".localized)
 		refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
 		sceneView.profileCollectionView.refreshControl = refreshControl
@@ -80,7 +90,8 @@ private extension ProfileViewController {
 }
 
 extension ProfileViewController: ProfileViewDisplayale {
-	func displayView(with sections: [Section]) {
+	func displayView(screenTitle: String, sections: [Section]) {
+		title = screenTitle
 		profileDatasource = createDatasource()
 		reloadData(with: sections)
 	}
@@ -95,5 +106,17 @@ extension ProfileViewController: ProfileViewDisplayale {
 			snapshot.appendItems(section.items, toSection: section)
 		}
 		profileDatasource?.apply(snapshot)
+	}
+
+	func showLoaderIndicator() {
+		showLoadingView()
+	}
+
+	func hideLoaderIndicator() {
+		hideLoadingView()
+	}
+
+	func showErrorMessage(title: String, message: String) {
+		showAlert(title: title, message: message)
 	}
 }

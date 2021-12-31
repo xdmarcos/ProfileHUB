@@ -13,10 +13,10 @@ protocol ScreenStackProtocol {
 
 extension ScreenStackProtocol {
 	func windowForScene(_ windowScene: UIWindowScene) -> UIWindow {
-		let rootVC = RootViewController()
 		let window = UIWindow(windowScene: windowScene)
 		window.backgroundColor = .systemBackground
-		window.rootViewController = rootVC
+		let rootCoordinator = RootFlowCoordinator.build(rootWindow: window)
+		rootCoordinator.start()
 		
 		return window
 	}

@@ -8,6 +8,7 @@
 
 import Foundation
 
-enum Credentials {
+enum QueryItems {
+	static let profileToFetch = "xdmarcos"
 	static let ghPersonalToken = "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"
 }

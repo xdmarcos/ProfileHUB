@@ -8,8 +8,10 @@
 
 "profile_summary_title" = "Profile";
 "profile_refresh_title" = "Pull to refresh";
+"profile_loading_title" = "Loading...";
 
 "general_alert_error_title" = "Error";
+"general_alert_graphQLerror_title" = "GraphQL Error";
 "general_alert_error_button_ok" = "OK";
 
 "profile_sections_title_pinned" = "Pinned";

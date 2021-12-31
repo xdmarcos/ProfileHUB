@@ -84,3 +84,67 @@ public extension UIColor {
 		}
 	}
 }
+
+public extension UIViewController {
+	func showAlert(title: String, message: String) {
+		let alert = UIAlertController(
+			title: title,
+			message: message,
+			preferredStyle: .alert
+		)
+		alert.addAction(UIAlertAction(title: "OK", style: .default))
+		self.present(alert, animated: true)
+	}
+
+	func showAlertForErrors(_ errors: [Error]) {
+		let message = errors
+		  .map { $0.localizedDescription }
+		  .joined(separator: "\n")
+		self.showAlert(title: "Error(s)", message: message)
+	  }
+
+	func showAlertWithInputField(title: String, message: String, actionTitle: String = "Submit", cancelTitle: String = "Cancel", response: ((String?) -> Void)?) {
+		let alert = UIAlertController(
+			title: title,
+			message: message,
+			preferredStyle: .alert
+		)
+
+		alert.addTextField()
+
+		let submitAction = UIAlertAction(title: actionTitle, style: .default) { [unowned alert] _ in
+			let answer = alert.textFields![0]
+			response?(answer.text)
+		}
+
+		let cancelAction = UIAlertAction(title: cancelTitle, style: .destructive) { [unowned alert] _ in
+			alert.dismiss(animated: true, completion: nil)
+		}
+
+		alert.addAction(submitAction)
+		alert.addAction(cancelAction)
+
+		present(alert, animated: true)
+	}
+
+	func showLoadingView(loadOnLaunch: Bool = true, loadingViewController: ((LoadingViewController) -> Void)? = nil) {
+		let loadingVC = LoadingViewController()
+		loadingVC.modalPresentationStyle = .overCurrentContext
+		loadingVC.modalTransitionStyle = .crossDissolve
+
+		if loadOnLaunch {
+			loadingVC.startLoading()
+		}
+
+		present(loadingVC, animated: true) {
+			loadingViewController?(loadingVC)
+		}
+	}
+	
+	func hideLoadingView() {
+		guard let loadingVC = self.presentedViewController as? LoadingViewController else { return }
+		loadingVC.stopLoading()
+		loadingVC.modalTransitionStyle = .crossDissolve
+		loadingVC.dismiss(animated: true, completion: nil)
+	}
+}

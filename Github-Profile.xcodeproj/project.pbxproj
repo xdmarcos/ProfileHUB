@@ -12,6 +12,13 @@
 		A5577048277E02D5002964E7 /* ImageCache in Frameworks */ = {isa = PBXBuildFile; productRef = A5577047277E02D5002964E7 /* ImageCache */; };
 		A557704A277E23B6002964E7 /* ProfileViewController+FlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5577049277E23B6002964E7 /* ProfileViewController+FlowLayout.swift */; };
 		A557704C277E2664002964E7 /* ProfileViewController+Datasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A557704B277E2664002964E7 /* ProfileViewController+Datasource.swift */; };
+		A557704E277E46AC002964E7 /* ProfileType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A557704D277E46AC002964E7 /* ProfileType.swift */; };
+		A5577053277EF092002964E7 /* ProfileFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5577052277EF092002964E7 /* ProfileFlowCoordinator.swift */; };
+		A5577055277EF129002964E7 /* ProfileFlowResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5577054277EF129002964E7 /* ProfileFlowResolver.swift */; };
+		A5577057277EF201002964E7 /* ProfileFlowCoordinator+Build.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5577056277EF201002964E7 /* ProfileFlowCoordinator+Build.swift */; };
+		A557705B277EF9F9002964E7 /* RootFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A557705A277EF9F9002964E7 /* RootFlowCoordinator.swift */; };
+		A557705D277EFA03002964E7 /* RootFlowCoordinator+Build.swift in Sources */ = {isa = PBXBuildFile; fileRef = A557705C277EFA03002964E7 /* RootFlowCoordinator+Build.swift */; };
+		A557705F277EFA12002964E7 /* RootFlowResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A557705E277EFA12002964E7 /* RootFlowResolver.swift */; };
 		A573A8F12778EB7F00B30B5E /* GitHubService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573A8F02778EB7F00B30B5E /* GitHubService.swift */; };
 		A573A8F42778F0D100B30B5E /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = A573A8F32778F0D100B30B5E /* Apollo */; };
 		A573A8F62778F38600B30B5E /* ProfileRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573A8F52778F38600B30B5E /* ProfileRepositoryProtocol.swift */; };
@@ -44,7 +51,6 @@
 		A5D866DC2778E62F002CE949 /* GraphQLService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D866DB2778E62F002CE949 /* GraphQLService.swift */; };
 		A5E57D0627723C6400DD0ECD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E57D0527723C6400DD0ECD /* AppDelegate.swift */; };
 		A5E57D0827723C6400DD0ECD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E57D0727723C6400DD0ECD /* SceneDelegate.swift */; };
-		A5E57D0A27723C6400DD0ECD /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E57D0927723C6400DD0ECD /* RootViewController.swift */; };
 		A5E57D0F27723C6E00DD0ECD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5E57D0E27723C6E00DD0ECD /* Assets.xcassets */; };
 		A5E57D1227723C6E00DD0ECD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5E57D1027723C6E00DD0ECD /* LaunchScreen.storyboard */; };
 		A5E57D1D27723C6F00DD0ECD /* Github_ProfileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E57D1C27723C6F00DD0ECD /* Github_ProfileTests.swift */; };
@@ -64,6 +70,13 @@
 /* Begin PBXFileReference section */
 		A5577049277E23B6002964E7 /* ProfileViewController+FlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileViewController+FlowLayout.swift"; sourceTree = "<group>"; };
 		A557704B277E2664002964E7 /* ProfileViewController+Datasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileViewController+Datasource.swift"; sourceTree = "<group>"; };
+		A557704D277E46AC002964E7 /* ProfileType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileType.swift; sourceTree = "<group>"; };
+		A5577052277EF092002964E7 /* ProfileFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFlowCoordinator.swift; sourceTree = "<group>"; };
+		A5577054277EF129002964E7 /* ProfileFlowResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFlowResolver.swift; sourceTree = "<group>"; };
+		A5577056277EF201002964E7 /* ProfileFlowCoordinator+Build.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileFlowCoordinator+Build.swift"; sourceTree = "<group>"; };
+		A557705A277EF9F9002964E7 /* RootFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootFlowCoordinator.swift; sourceTree = "<group>"; };
+		A557705C277EFA03002964E7 /* RootFlowCoordinator+Build.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RootFlowCoordinator+Build.swift"; sourceTree = "<group>"; };
+		A557705E277EFA12002964E7 /* RootFlowResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootFlowResolver.swift; sourceTree = "<group>"; };
 		A573A8F02778EB7F00B30B5E /* GitHubService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubService.swift; sourceTree = "<group>"; };
 		A573A8F52778F38600B30B5E /* ProfileRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRepositoryProtocol.swift; sourceTree = "<group>"; };
 		A573A8F72778F65000B30B5E /* ProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRepository.swift; sourceTree = "<group>"; };
@@ -110,7 +123,6 @@
 		A5E57D0227723C6400DD0ECD /* Github-Profile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Github-Profile.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5E57D0527723C6400DD0ECD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5E57D0727723C6400DD0ECD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		A5E57D0927723C6400DD0ECD /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		A5E57D0E27723C6E00DD0ECD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A5E57D1127723C6E00DD0ECD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A5E57D1327723C6E00DD0ECD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -146,6 +158,25 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A5577058277EF993002964E7 /* Flow */ = {
+			isa = PBXGroup;
+			children = (
+				A5CF173727734AD20090E1A7 /* Root */,
+				A5577059277EF9A2002964E7 /* Profile */,
+			);
+			path = Flow;
+			sourceTree = "<group>";
+		};
+		A5577059277EF9A2002964E7 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				A5577052277EF092002964E7 /* ProfileFlowCoordinator.swift */,
+				A5577056277EF201002964E7 /* ProfileFlowCoordinator+Build.swift */,
+				A5577054277EF129002964E7 /* ProfileFlowResolver.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		A56B19EF2778A6E900150B50 /* Repository */ = {
@@ -189,6 +220,7 @@
 				A592BD4B277601EE0019DC82 /* HeaderViewModel.swift */,
 				A592BD4D277601EE0019DC82 /* SectionHeaderViewModel.swift */,
 				A573A8FD2778FCF500B30B5E /* UserProfileQueryResponse.swift */,
+				A557704D277E46AC002964E7 /* ProfileType.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -204,6 +236,7 @@
 		A592BD522776029F0019DC82 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				A592BD53277602AF0019DC82 /* Common */,
 				A592BD5D277603070019DC82 /* ProfileView.swift */,
 				A592BD5C277603070019DC82 /* ProfileViewController.swift */,
 				A5577049277E23B6002964E7 /* ProfileViewController+FlowLayout.swift */,
@@ -226,7 +259,9 @@
 		A5CF173727734AD20090E1A7 /* Root */ = {
 			isa = PBXGroup;
 			children = (
-				A5E57D0927723C6400DD0ECD /* RootViewController.swift */,
+				A557705A277EF9F9002964E7 /* RootFlowCoordinator.swift */,
+				A557705C277EFA03002964E7 /* RootFlowCoordinator+Build.swift */,
+				A557705E277EFA12002964E7 /* RootFlowResolver.swift */,
 			);
 			path = Root;
 			sourceTree = "<group>";
@@ -280,6 +315,7 @@
 			children = (
 				A573A9012779D1FE00B30B5E /* Credentials.swift */,
 				A5E57D3727723F2C00DD0ECD /* App */,
+				A5577058277EF993002964E7 /* Flow */,
 				A592BD48277601A60019DC82 /* Model */,
 				A5E57D3827723F4400DD0ECD /* View */,
 				A592BD49277601AD0019DC82 /* Presenter */,
@@ -312,9 +348,7 @@
 		A5E57D3827723F4400DD0ECD /* View */ = {
 			isa = PBXGroup;
 			children = (
-				A5CF173727734AD20090E1A7 /* Root */,
 				A592BD522776029F0019DC82 /* Profile */,
-				A592BD53277602AF0019DC82 /* Common */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -472,20 +506,25 @@
 				A5D866D22778DCBA002CE949 /* ResponseLoggingInterceptor.swift in Sources */,
 				A5E57D3627723D7A00DD0ECD /* ScreenStackProtocol.swift in Sources */,
 				A573A8F62778F38600B30B5E /* ProfileRepositoryProtocol.swift in Sources */,
+				A5577053277EF092002964E7 /* ProfileFlowCoordinator.swift in Sources */,
 				A573A8FA2778F70300B30B5E /* GraphQLProviderProtocol.swift in Sources */,
 				A592BD58277602DB0019DC82 /* HeaderView.swift in Sources */,
+				A557705B277EF9F9002964E7 /* RootFlowCoordinator.swift in Sources */,
 				A592BD51277601EE0019DC82 /* SectionHeaderViewModel.swift in Sources */,
 				A573A8F82778F65000B30B5E /* ProfileRepository.swift in Sources */,
 				A573A8F12778EB7F00B30B5E /* GitHubService.swift in Sources */,
 				A5D866D02778DC6F002CE949 /* NetworkInterceptorProvider.swift in Sources */,
 				A5D866D82778DF33002CE949 /* RequestLoggingInterceptor.swift in Sources */,
-				A5E57D0A27723C6400DD0ECD /* RootViewController.swift in Sources */,
 				A592BD4E277601EE0019DC82 /* Repository.swift in Sources */,
+				A5577055277EF129002964E7 /* ProfileFlowResolver.swift in Sources */,
 				A5D866C62778B23E002CE949 /* GraphQLAPI.swift in Sources */,
 				A592BD6327760CDC0019DC82 /* ProfileViewController+Build.swift in Sources */,
+				A5577057277EF201002964E7 /* ProfileFlowCoordinator+Build.swift in Sources */,
 				A592BD50277601EE0019DC82 /* Section.swift in Sources */,
 				A5E57D0627723C6400DD0ECD /* AppDelegate.swift in Sources */,
 				A557704A277E23B6002964E7 /* ProfileViewController+FlowLayout.swift in Sources */,
+				A557705F277EFA12002964E7 /* RootFlowResolver.swift in Sources */,
+				A557704E277E46AC002964E7 /* ProfileType.swift in Sources */,
 				A592BD59277602DB0019DC82 /* SectionHeaderView.swift in Sources */,
 				A592BD61277603340019DC82 /* ProfilePresenter.swift in Sources */,
 				A5E57D0827723C6400DD0ECD /* SceneDelegate.swift in Sources */,
@@ -495,6 +534,7 @@
 				A592BD5F277603070019DC82 /* ProfileView.swift in Sources */,
 				A573A9022779D1FE00B30B5E /* Credentials.swift in Sources */,
 				A573A900277906A000B30B5E /* Helpers.swift in Sources */,
+				A557705D277EFA03002964E7 /* RootFlowCoordinator+Build.swift in Sources */,
 				A5D866CD2778DAC5002CE949 /* GraphQLProvider.swift in Sources */,
 				A557704C277E2664002964E7 /* ProfileViewController+Datasource.swift in Sources */,
 				A592BD4F277601EE0019DC82 /* HeaderViewModel.swift in Sources */,

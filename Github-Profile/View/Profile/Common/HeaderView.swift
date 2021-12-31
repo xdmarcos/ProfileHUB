@@ -11,7 +11,7 @@ import CommonUI
 import ImageCache
 
 class HeaderView: UICollectionReusableView {
-	static let supplementaryViewKind = "HeaderSupplementaryView"
+	static let supplementaryViewKind = "HeaderViewKind"
 	private enum ViewTraits {
 		static let contentInset = UIEdgeInsets(
 			top: 0,

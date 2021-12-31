@@ -8,6 +8,7 @@
 
 "profile_summary_title" = "Profiel";
 "profile_refresh_title" = "Trek om te vernieuwen";
+"profile_loading_title" = "Lading...";
 
 "general_alert_error_title" = "Error";
 "general_alert_error_button_ok" = "OK";
