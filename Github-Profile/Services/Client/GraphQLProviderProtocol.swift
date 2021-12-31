@@ -10,4 +10,5 @@ import Foundation
 
 public protocol GraphQLProviderProtocol {
 	var service: GraphQLService { get }
+	func clearCache()
 }
