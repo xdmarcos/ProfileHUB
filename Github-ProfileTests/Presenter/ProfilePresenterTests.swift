@@ -27,7 +27,7 @@ final class ProfilePresenterTests: XCTestCase {
 		sut = nil
     }
 
-	func testPresenterViewDidLoadCallsViewWhenSuccess() {
+	func testPresenter_viewDidLoadCallsView_whenSuccess() {
 		// Given
 		let response = UserProfileQueryResponse(userProfile: userProfileResponseMock, graphQLError: nil)
 		profileRepositoryMock.userProfileRepositoriesUsernameCompletionClosure = { _, completion in
@@ -44,7 +44,7 @@ final class ProfilePresenterTests: XCTestCase {
 		XCTAssertTrue(viewController.hideLoaderIndicatorCalled)
 	}
 
-	func testPresenterViewDidLoadCallsViewWhenFailure() {
+	func testPresenter_viewDidLoadCallsView_whenFailure() {
 		// Given
 		let response = userProfileResponseErrorMock
 		profileRepositoryMock.userProfileRepositoriesUsernameCompletionClosure = { _, completion in
@@ -61,7 +61,7 @@ final class ProfilePresenterTests: XCTestCase {
 		XCTAssertTrue(viewController.hideLoaderIndicatorCalled)
 	}
 
-	func testPresenterSectionForIndexWhenValues() {
+	func testPresenter_sectionForIndex_whenValues() {
 		// Given
 		let response = populateSectionsAndReturnResponse()
 		let index = 0
@@ -75,7 +75,7 @@ final class ProfilePresenterTests: XCTestCase {
 		XCTAssertEqual(expectedValue?.name, section?.items[safe: index]?.repoName)
 	}
 
-	func testPresenterSectionForIndexWhenNoValues() {
+	func testPresenter_sectionForIndex_whenNoValues() {
 		// Given
 		let index = 0
 		
@@ -86,7 +86,7 @@ final class ProfilePresenterTests: XCTestCase {
 		XCTAssertNil(section)
 	}
 
-	func testPreseterUserProfileWhenValues() {
+	func testPreseter_userProfile_whenValues() {
 		// Given
 		let response = populateSectionsAndReturnResponse()
 		let expectedValue = response.userProfile?.name
@@ -99,7 +99,7 @@ final class ProfilePresenterTests: XCTestCase {
 		XCTAssertEqual(expectedValue, userHeaderProfile.name)
 	}
 
-	func testPreseterUserProfileWhenNoValues() {
+	func testPreseter_userProfile_whenNoValues() {
 		// Given
 		let expectedValue = HeaderViewModel.placeholder.name
 
@@ -111,7 +111,7 @@ final class ProfilePresenterTests: XCTestCase {
 		XCTAssertEqual(expectedValue, userHeaderProfile.name)
 	}
 
-	func testPresenterReloadDataWhenSuccess() {
+	func testPresenter_reloadData_whenSuccess() {
 		// Given
 		let response = UserProfileQueryResponse(userProfile: userProfileResponseMock, graphQLError: nil)
 		profileRepositoryMock.userProfileRepositoriesUsernameCompletionClosure = { _, completion in
@@ -128,7 +128,7 @@ final class ProfilePresenterTests: XCTestCase {
 		XCTAssertFalse(viewController.hideLoaderIndicatorCalled)
 	}
 
-	func testPresenterReloadDataWhenFailure() {
+	func testPresenter_reloadData_whenFailure() {
 		// Given
 		let response = userProfileResponseErrorMock
 		profileRepositoryMock.userProfileRepositoriesUsernameCompletionClosure = { _, completion in
@@ -145,7 +145,7 @@ final class ProfilePresenterTests: XCTestCase {
 		XCTAssertTrue(viewController.hideLoaderIndicatorCalled)
 	}
 
-	func testPresenterRepositoryIDWhenValues() {
+	func testPresenter_repositoryID_whenValues() {
 		// Given
 		let response = populateSectionsAndReturnResponse()
 		let indexPath = IndexPath(row: 0, section: 0)
@@ -159,7 +159,7 @@ final class ProfilePresenterTests: XCTestCase {
 		XCTAssertEqual(expectedValue?.name, viewController.repositoryItemDidFindItemReceivedItem?.repoName)
 	}
 
-	func testPresenterRepositoryIDWhenNoValues() {
+	func testPresenter_repositoryID_whenNoValues() {
 		// Given
 		let indexPath = IndexPath(row: 0, section: 0)
 

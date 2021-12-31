@@ -24,7 +24,7 @@ final class ProfileViewControllerTests: XCTestCase {
 		sut = nil
 	}
 
-	func testPresentedCalledWhenViewDidLoad() {
+	func test_presentedCalled_whenViewDidLoad() {
 		// Given
 		appearanceTransition()
 
@@ -35,7 +35,7 @@ final class ProfileViewControllerTests: XCTestCase {
 		XCTAssertTrue(presenterMock.viewDidLoadCalled)
 	}
 
-	func testPresentedCalledWhenPullToRefresh() {
+	func test_presentedCalled_whenPullToRefresh() {
 		// Given
 		sut.loadViewIfNeeded()
 
@@ -46,7 +46,7 @@ final class ProfileViewControllerTests: XCTestCase {
 		XCTAssertTrue(presenterMock.reloadDataCalled)
 	}
 
-	func testPresentedCalledWhenItemDidSelect() {
+	func test_presentedCalled_whenItemDidSelect() {
 		// Given
 		let indexPath = IndexPath(row: 0, section: 0)
 		sut.loadViewIfNeeded()
@@ -59,7 +59,7 @@ final class ProfileViewControllerTests: XCTestCase {
 		XCTAssertEqual(indexPath, presenterMock.repositoryIdIndexPathReceivedIndexPath)
 	}
 
-	func testPresentedCalledWhenCreateLayout() {
+	func test_presentedCalled_whenCreateLayout() {
 		// Given
 		let index = 0
 		sut.loadViewIfNeeded()
@@ -71,7 +71,7 @@ final class ProfileViewControllerTests: XCTestCase {
 		XCTAssertTrue(presenterMock.sectionForCalled)
 	}
 
-	func testPresentedCalledWhenSUserProlineNeeded() {
+	func test_presentedCalled_whenSUserProlineNeeded() {
 		// Given
 		presenterMock.userProfileInfoReturnValue = HeaderViewModel.placeholder
 		sut.loadViewIfNeeded()

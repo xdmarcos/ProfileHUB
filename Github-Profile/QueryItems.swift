@@ -10,5 +10,5 @@ import Foundation
 
 enum QueryItems {
 	static let profileToFetch = "xdmarcos"
-	static let ghPersonalToken = "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"
+	static let ghPersonalToken = "Enter your GitHub personal access token here"
 }
