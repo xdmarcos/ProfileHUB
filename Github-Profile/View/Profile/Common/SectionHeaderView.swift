@@ -9,7 +9,7 @@
 import UIKit
 import CommonUI
 
-class SectionHeaderView: UICollectionReusableView {
+final class SectionHeaderView: UICollectionReusableView {
 	private enum ViewTraits {
 		static let contentInset = UIEdgeInsets(
 			top: 0,

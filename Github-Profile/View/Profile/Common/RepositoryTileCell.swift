@@ -10,7 +10,7 @@ import UIKit
 import CommonUI
 import ImageCache
 
-class RepositoryTileCell: UICollectionViewCell {
+final class RepositoryTileCell: UICollectionViewCell {
 	private enum ViewTraits {
 		static let contentInset = UIEdgeInsets(
 			top: 0,

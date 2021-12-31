@@ -7,7 +7,8 @@
 
 import UIKit
 
-class SceneDelegate: UIResponder, UIWindowSceneDelegate, ScreenStackProtocol {
+class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+	private var rootCoordinator: RootFlowCoordinator!
 	var window: UIWindow?
 	
 	func scene(
@@ -17,8 +18,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, ScreenStackProtocol {
 	) {
 		guard let windowScene = (scene as? UIWindowScene) else { return }
 		
-		window = windowForScene(windowScene)
+		window = UIWindow(windowScene: windowScene)
+		window?.backgroundColor = .systemBackground
 		window?.makeKeyAndVisible()
+		rootCoordinator = RootFlowCoordinator.build(rootWindow: window!)
+		rootCoordinator.start()
+
 		window?.windowScene = windowScene
 	}
 }

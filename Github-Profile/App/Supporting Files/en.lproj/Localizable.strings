@@ -28,3 +28,6 @@
 "profile_header_following_title" = "following";
 
 "profile_repository_language_placeholder" = "Text";
+
+"repository_detail_title" = "Repository Detail";
+"repository_all_title" = "Repositories";

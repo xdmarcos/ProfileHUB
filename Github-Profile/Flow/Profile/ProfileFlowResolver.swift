@@ -20,10 +20,10 @@ final class ProfileFlowResolverModule: ProfileFlowResolver {
 	}
 
 	func resolveProfileDetailViewController(repoId: String) -> UIViewController {
-		UIViewController()
+		RepositoryDetailViewController()
 	}
 
 	func resolveProfileAllRepositoriesViewController(repoType: Section.SectionType) -> UIViewController {
-		UIViewController()
+		RepositoryAllViewController()
 	}
 }

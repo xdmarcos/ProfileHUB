@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfileView: UIView {
+final class ProfileView: UIView {
 	private enum ViewTraits {
 		static let contentInset = UIEdgeInsets(
 			top: 0,

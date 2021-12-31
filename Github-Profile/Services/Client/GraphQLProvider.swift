@@ -10,7 +10,7 @@ import Foundation
 import Apollo
 import ApolloSQLite
 
-public class GraphQLProvider: GraphQLProviderProtocol {
+final public class GraphQLProvider: GraphQLProviderProtocol {
 	private static let sqlFileName = "graphql_db.sqlite"
 	private lazy var sqlFileURL: URL = {
 		let documentsPath = NSSearchPathForDirectoriesInDomains(

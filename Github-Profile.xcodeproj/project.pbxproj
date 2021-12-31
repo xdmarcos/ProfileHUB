@@ -53,9 +53,10 @@
 		A5E57D0F27723C6E00DD0ECD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5E57D0E27723C6E00DD0ECD /* Assets.xcassets */; };
 		A5E57D1227723C6E00DD0ECD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5E57D1027723C6E00DD0ECD /* LaunchScreen.storyboard */; };
 		A5E57D1D27723C6F00DD0ECD /* Github_ProfileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E57D1C27723C6F00DD0ECD /* Github_ProfileTests.swift */; };
-		A5E57D3627723D7A00DD0ECD /* ScreenStackProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E57D3527723D7A00DD0ECD /* ScreenStackProtocol.swift */; };
 		A5F7DCC3277F15C900F8E1FF /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = A5F7DCC2277F15C900F8E1FF /* Apollo */; };
 		A5F7DCC5277F15C900F8E1FF /* ApolloSQLite in Frameworks */ = {isa = PBXBuildFile; productRef = A5F7DCC4277F15C900F8E1FF /* ApolloSQLite */; };
+		A5F7DCCB277F2BB700F8E1FF /* RepositoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F7DCCA277F2BB700F8E1FF /* RepositoryDetailViewController.swift */; };
+		A5F7DCCE277F2BD900F8E1FF /* RepositoryAllViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F7DCCD277F2BD900F8E1FF /* RepositoryAllViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,7 +130,8 @@
 		A5E57D1327723C6E00DD0ECD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A5E57D1827723C6F00DD0ECD /* Github-ProfileTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Github-ProfileTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5E57D1C27723C6F00DD0ECD /* Github_ProfileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Github_ProfileTests.swift; sourceTree = "<group>"; };
-		A5E57D3527723D7A00DD0ECD /* ScreenStackProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenStackProtocol.swift; sourceTree = "<group>"; };
+		A5F7DCCA277F2BB700F8E1FF /* RepositoryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetailViewController.swift; sourceTree = "<group>"; };
+		A5F7DCCD277F2BD900F8E1FF /* RepositoryAllViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryAllViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,13 +157,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A5577035277DD748002964E7 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		A5577058277EF993002964E7 /* Flow */ = {
 			isa = PBXGroup;
 			children = (
@@ -299,7 +294,6 @@
 				A5E57D0427723C6400DD0ECD /* Github-Profile */,
 				A5E57D1B27723C6F00DD0ECD /* Github-ProfileTests */,
 				A5E57D0327723C6400DD0ECD /* Products */,
-				A5577035277DD748002964E7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -340,7 +334,6 @@
 			children = (
 				A5E57D0527723C6400DD0ECD /* AppDelegate.swift */,
 				A5E57D0727723C6400DD0ECD /* SceneDelegate.swift */,
-				A5E57D3527723D7A00DD0ECD /* ScreenStackProtocol.swift */,
 				A592BD462775FDBD0019DC82 /* Configurations */,
 				A5E57D3927723F8500DD0ECD /* Supporting Files */,
 			);
@@ -351,6 +344,8 @@
 			isa = PBXGroup;
 			children = (
 				A592BD522776029F0019DC82 /* Profile */,
+				A5F7DCC9277F2B9900F8E1FF /* RepositoryDetail */,
+				A5F7DCCC277F2BC300F8E1FF /* RepositoryAll */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -365,6 +360,22 @@
 				A5CF171D27724DEB0090E1A7 /* InfoPlist.strings */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A5F7DCC9277F2B9900F8E1FF /* RepositoryDetail */ = {
+			isa = PBXGroup;
+			children = (
+				A5F7DCCA277F2BB700F8E1FF /* RepositoryDetailViewController.swift */,
+			);
+			path = RepositoryDetail;
+			sourceTree = "<group>";
+		};
+		A5F7DCCC277F2BC300F8E1FF /* RepositoryAll */ = {
+			isa = PBXGroup;
+			children = (
+				A5F7DCCD277F2BD900F8E1FF /* RepositoryAllViewController.swift */,
+			);
+			path = RepositoryAll;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -507,12 +518,13 @@
 				A573A8FC2778FC0600B30B5E /* RepositoryError.swift in Sources */,
 				A5D866DA2778E498002CE949 /* AuthTokenInterceptor.swift in Sources */,
 				A5D866D22778DCBA002CE949 /* ResponseLoggingInterceptor.swift in Sources */,
-				A5E57D3627723D7A00DD0ECD /* ScreenStackProtocol.swift in Sources */,
 				A573A8F62778F38600B30B5E /* ProfileRepositoryProtocol.swift in Sources */,
 				A5577053277EF092002964E7 /* ProfileFlowCoordinator.swift in Sources */,
 				A573A8FA2778F70300B30B5E /* GraphQLProviderProtocol.swift in Sources */,
+				A5F7DCCE277F2BD900F8E1FF /* RepositoryAllViewController.swift in Sources */,
 				A592BD58277602DB0019DC82 /* HeaderView.swift in Sources */,
 				A557705B277EF9F9002964E7 /* RootFlowCoordinator.swift in Sources */,
+				A5F7DCCB277F2BB700F8E1FF /* RepositoryDetailViewController.swift in Sources */,
 				A592BD51277601EE0019DC82 /* SectionHeaderViewModel.swift in Sources */,
 				A573A8F82778F65000B30B5E /* ProfileRepository.swift in Sources */,
 				A573A8F12778EB7F00B30B5E /* GitHubService.swift in Sources */,

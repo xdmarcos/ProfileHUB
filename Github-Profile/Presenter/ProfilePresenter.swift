@@ -14,6 +14,7 @@ protocol ProfilePresentable {
 	func section(for index: Int) -> Section?
 	func userProfileInfo() -> HeaderViewModel
 	func reloadData()
+	func repositoryId(indexPath: IndexPath)
 }
 
 final class ProfilePresenter: ProfilePresentable {
@@ -64,6 +65,12 @@ final class ProfilePresenter: ProfilePresentable {
 			guard let self = self else { return }
 			self.view?.reloadData(with: self.sections)
 		}
+	}
+
+	func repositoryId(indexPath: IndexPath) {
+		guard let section = sections[safe: indexPath.section],
+		let item = section.items[safe: indexPath.row] else { return }
+		view?.repositoryItemDidFind(item: item)
 	}
 }
 

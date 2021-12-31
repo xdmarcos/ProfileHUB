@@ -12,6 +12,7 @@ import Common
 final class RootFlowCoordinator: FlowCoordination {
 	private let resolver: RootFlowResolver
 	private let rootVindow: UIWindow
+	private var profileCoordinator: ProfileFlowCoordinator!
 
 	init(resolver: RootFlowResolver, rootVindow: UIWindow) {
 		self.resolver = resolver
@@ -21,7 +22,7 @@ final class RootFlowCoordinator: FlowCoordination {
 	func start() {
 		let rootNavigationController = resolver.resolveRootNavigationController()
 		rootVindow.rootViewController = rootNavigationController
-		let profileCoordinator = ProfileFlowCoordinator.build(
+		profileCoordinator = ProfileFlowCoordinator.build(
 			navigationController: rootNavigationController
 		)
 		profileCoordinator.start()

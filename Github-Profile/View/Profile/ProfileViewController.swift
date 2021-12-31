@@ -14,6 +14,7 @@ protocol ProfileViewDisplayale: AnyObject {
 	func showLoaderIndicator()
 	func hideLoaderIndicator()
 	func showErrorMessage(title: String, message: String)
+	func repositoryItemDidFind(item: Repository)
 }
 
 protocol ProfileViewControllerDelegate: AnyObject {
@@ -86,6 +87,14 @@ private extension ProfileViewController {
 			RepositoryTileCell.self,
 			forCellWithReuseIdentifier: RepositoryTileCell.reuseIdentifier
 		)
+
+		sceneView.profileCollectionView.delegate = self
+	}
+}
+
+extension ProfileViewController: UICollectionViewDelegate {
+	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+		presenter.repositoryId(indexPath: indexPath)
 	}
 }
 
@@ -118,5 +127,10 @@ extension ProfileViewController: ProfileViewDisplayale {
 
 	func showErrorMessage(title: String, message: String) {
 		showAlert(title: title, message: message)
+	}
+
+	func repositoryItemDidFind(item: Repository) {
+		DLog("Selected repo: \(item)")
+		delegate?.navigateToDetail(repositoryID: item.id.uuidString)
 	}
 }
