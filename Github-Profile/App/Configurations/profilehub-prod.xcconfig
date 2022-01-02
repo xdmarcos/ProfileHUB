@@ -1,0 +1,12 @@
+//
+// profilehub-prod.xcconfig
+// Github-Profile
+//
+// Created by Marcos González on 2022.
+// 
+//
+
+#include "profilehub-shared.xcconfig"
+
+ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon
+OTHER_SWIFT_FLAGS = $(inherited) -DCONF_PROD
