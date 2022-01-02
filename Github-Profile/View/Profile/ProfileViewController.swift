@@ -100,7 +100,7 @@ extension ProfileViewController: UICollectionViewDelegate {
 
 extension ProfileViewController {
 	func requestData() {
-		presenter.getUserProfile()
+		presenter.loadUserProfileData()
 	}
 
 	func requestReloadData() {
@@ -120,13 +120,11 @@ extension ProfileViewController {
 	}
 
 	func requestUserProfile(userProfile: String) {
-		presenter.updateProfileName(newProfileName: userProfile)
-		presenter.getUserProfile()
+		presenter.updateProfileNameAndLoadData(newProfileName: userProfile)
 	}
 
 	func requestUserProfile(credentials: String) {
-		presenter.updateCredentials(newCredentials: credentials)
-		presenter.getUserProfile()
+		presenter.updateCredentialsAndLoadData(newCredentials: credentials)
 	}
 }
 

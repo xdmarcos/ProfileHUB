@@ -11,13 +11,16 @@ import XCTest
 
 final class ProfilePresenterTests: XCTestCase {
 	private var sut: ProfilePresenter!
-	private var profileRepositoryMock: MockProfileRepositoryProtocol!
-	private var viewController: MockProfileViewDisplayable!
+	private var profileRepositoryMock: MockProfileRepository!
+	private var viewController: MockProfileViewDisplaying!
 
     override func setUp() {
-		profileRepositoryMock = MockProfileRepositoryProtocol()
-        sut = ProfilePresenter(repository: profileRepositoryMock)
-		viewController = MockProfileViewDisplayable()
+		profileRepositoryMock = MockProfileRepository()
+		let mockConfig = Required(
+			profileToFetch: .profileName("AnyProfileName"),
+			personalAccessToken: .token("AnyToken"))
+		sut = ProfilePresenter(repository: profileRepositoryMock, configuration: mockConfig)
+		viewController = MockProfileViewDisplaying()
 		sut.view = viewController
     }
 
@@ -27,7 +30,7 @@ final class ProfilePresenterTests: XCTestCase {
 		sut = nil
     }
 
-	func testPresenter_viewDidLoadCallsView_whenSuccess() {
+	func testPresenter_loadUserProfileData_whenSuccess() {
 		// Given
 		let response = UserProfileQueryResponse(userProfile: userProfileResponseMock, graphQLError: nil)
 		profileRepositoryMock.userProfileRepositoriesUsernameCompletionClosure = { _, completion in
@@ -35,7 +38,7 @@ final class ProfilePresenterTests: XCTestCase {
 		}
 
 		// When
-		sut.viewDidLoad()
+		sut.loadUserProfileData()
 
 		// Then
 		XCTAssertTrue(viewController.showLoaderIndicatorCalled)
@@ -44,7 +47,7 @@ final class ProfilePresenterTests: XCTestCase {
 		XCTAssertTrue(viewController.hideLoaderIndicatorCalled)
 	}
 
-	func testPresenter_viewDidLoadCallsView_whenFailure() {
+	func testPresenter_loadUserProfileData_whenFailure() {
 		// Given
 		let response = userProfileResponseErrorMock
 		profileRepositoryMock.userProfileRepositoriesUsernameCompletionClosure = { _, completion in
@@ -52,11 +55,11 @@ final class ProfilePresenterTests: XCTestCase {
 		}
 
 		// When
-		sut.viewDidLoad()
+		sut.loadUserProfileData()
 
 		// Then
 		XCTAssertTrue(viewController.showLoaderIndicatorCalled)
-		XCTAssertTrue(viewController.displayViewScreenTitleSectionsCalled)
+		XCTAssertFalse(viewController.displayViewScreenTitleSectionsCalled)
 		XCTAssertTrue(viewController.showErrorMessageTitleMessageCalled)
 		XCTAssertTrue(viewController.hideLoaderIndicatorCalled)
 	}
@@ -96,19 +99,18 @@ final class ProfilePresenterTests: XCTestCase {
 
 		// Then
 		XCTAssertNotNil(userHeaderProfile)
-		XCTAssertEqual(expectedValue, userHeaderProfile.name)
+		XCTAssertEqual(expectedValue, userHeaderProfile?.name)
 	}
 
 	func testPreseter_userProfile_whenNoValues() {
 		// Given
-		let expectedValue = HeaderViewModel.placeholder.name
+		populateSectionsWithEmpty()
 
 		// When
 		let userHeaderProfile = sut.userProfileInfo()
 
 		// Then
-		XCTAssertNotNil(userHeaderProfile)
-		XCTAssertEqual(expectedValue, userHeaderProfile.name)
+		XCTAssertNil(userHeaderProfile)
 	}
 
 	func testPresenter_reloadData_whenSuccess() {
@@ -145,7 +147,7 @@ final class ProfilePresenterTests: XCTestCase {
 		XCTAssertTrue(viewController.hideLoaderIndicatorCalled)
 	}
 
-	func testPresenter_repositoryID_whenValues() {
+	func testPresenter_repositoryId_whenValues() {
 		// Given
 		let response = populateSectionsAndReturnResponse()
 		let indexPath = IndexPath(row: 0, section: 0)
@@ -159,7 +161,7 @@ final class ProfilePresenterTests: XCTestCase {
 		XCTAssertEqual(expectedValue?.name, viewController.repositoryItemDidFindItemReceivedItem?.repoName)
 	}
 
-	func testPresenter_repositoryID_whenNoValues() {
+	func testPresenter_repositoryId_whenNoValues() {
 		// Given
 		let indexPath = IndexPath(row: 0, section: 0)
 
@@ -168,6 +170,29 @@ final class ProfilePresenterTests: XCTestCase {
 
 		// Then
 		XCTAssertFalse(viewController.repositoryItemDidFindItemCalled)
+	}
+
+	func testPresenter_updateProfileName_whenValues() {
+		// Given
+		let profileName = "AnyProfileName"
+
+		// When
+		sut.updateProfileNameAndLoadData(newProfileName: profileName)
+
+		// Then
+		XCTAssertTrue(profileRepositoryMock.userProfileRepositoriesUsernameCompletionCalled)
+		XCTAssertEqual(profileName, profileRepositoryMock.userProfileRepositoriesUsernameCompletionReceivedArguments?.username)
+	}
+
+	func testPresenter_updateCredentials_whenValues() {
+		// Given
+		let credentials = "NewCredentials"
+
+		// When
+		sut.updateCredentialsAndLoadData(newCredentials: credentials)
+
+		// Then
+		XCTAssertTrue(profileRepositoryMock.userProfileRepositoriesUsernameCompletionCalled)
 	}
 }
 
@@ -185,7 +210,15 @@ private extension ProfilePresenterTests {
 		profileRepositoryMock.userProfileRepositoriesUsernameCompletionClosure = { _, completion in
 			completion(.success(response))
 		}
-		sut.viewDidLoad()
+		sut.loadUserProfileData()
 		return response
+	}
+
+	func populateSectionsWithEmpty() {
+		let response = userProfileResponseErrorMock
+		profileRepositoryMock.userProfileRepositoriesUsernameCompletionClosure = { _, completion in
+			completion(.failure(response))
+		}
+		sut.loadUserProfileData()
 	}
 }

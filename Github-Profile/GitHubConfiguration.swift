@@ -8,8 +8,8 @@
 
 import Foundation
 
-struct Required {
-	enum Item {
+struct Required: Equatable {
+	enum Item: Equatable {
 		case profileName(String)
 		case token(String)
 

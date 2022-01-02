@@ -1,8 +1,8 @@
 //
-// MockProfileViewController.swift
+// MockProfileDisplaying.swift
 // Github-ProfileTests
 //
-// Created by Marcos González on 2021.
+// Created by Marcos González on 2022.
 // 
 //
 
@@ -10,15 +10,15 @@ import Foundation
 @testable import Github_Profile
 
 // sourcery: AutoMockable
-extension ProfileViewDisplayable { }
+extension ProfileViewDisplaying { }
 
-// sourcery:inline:auto:ProfileViewDisplayable.AutoMockable
+// sourcery:inline:auto:ProfileViewDisplaying.AutoMockable
 
 // swiftlint:disable all
 
 /// The code in this block is automatically generated using Sourcery. Do not edit this code, it will be overwritten.
 /// To update this code, run 'sourcery' from the terminal.
-final class MockProfileViewDisplayable: ProfileViewDisplayable {
+final class MockProfileViewDisplaying: ProfileViewDisplaying {
 
 	// MARK: displayView
 
@@ -112,6 +112,23 @@ final class MockProfileViewDisplayable: ProfileViewDisplayable {
 		repositoryItemDidFindItemReceivedItem = item
 		repositoryItemDidFindItemReceivedInvocations.append(item)
 		repositoryItemDidFindItemClosure?(item)
+	}
+
+	// MARK: displayForm
+
+	var displayFormForViewModelCallsCount = 0
+	var displayFormForViewModelCalled: Bool {
+		displayFormForViewModelCallsCount > 0
+	}
+	var displayFormForViewModelReceivedArguments: (item: Required.Item, viewModel: FormViewModel)?
+	var displayFormForViewModelReceivedInvocations: [(item: Required.Item, viewModel: FormViewModel)] = []
+	var displayFormForViewModelClosure: ((Required.Item, FormViewModel) -> Void)?
+
+	func displayForm(for item: Required.Item, viewModel: FormViewModel) {
+		displayFormForViewModelCallsCount += 1
+		displayFormForViewModelReceivedArguments = (item: item, viewModel: viewModel)
+		displayFormForViewModelReceivedInvocations.append((item: item, viewModel: viewModel))
+		displayFormForViewModelClosure?(item, viewModel)
 	}
 }
 

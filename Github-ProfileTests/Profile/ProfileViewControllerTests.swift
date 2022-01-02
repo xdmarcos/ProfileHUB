@@ -11,11 +11,11 @@ import XCTest
 
 final class ProfileViewControllerTests: XCTestCase {
 	private var sut: ProfileViewController!
-	private var presenterMock: MockProfilePresentable!
-	private var viewController: MockProfileViewDisplayable!
+	private var presenterMock: MockProfilePresenting!
+	private var viewController: MockProfileViewDisplaying!
 
 	override func setUp() {
-		presenterMock = MockProfilePresentable()
+		presenterMock = MockProfilePresenting()
 		sut = ProfileViewController(presenter: presenterMock)
 	}
 
@@ -24,7 +24,7 @@ final class ProfileViewControllerTests: XCTestCase {
 		sut = nil
 	}
 
-	func test_presentedCalled_whenViewDidLoad() {
+	func test_presenterCalled_whenViewDidLoad() {
 		// Given
 		appearanceTransition()
 
@@ -32,10 +32,10 @@ final class ProfileViewControllerTests: XCTestCase {
 		sut.viewDidLoad()
 
 		// Then
-		XCTAssertTrue(presenterMock.viewDidLoadCalled)
+		XCTAssertTrue(presenterMock.loadUserProfileDataCalled)
 	}
 
-	func test_presentedCalled_whenPullToRefresh() {
+	func test_presenterCalled_whenPullToRefresh() {
 		// Given
 		sut.loadViewIfNeeded()
 
@@ -46,7 +46,7 @@ final class ProfileViewControllerTests: XCTestCase {
 		XCTAssertTrue(presenterMock.reloadDataCalled)
 	}
 
-	func test_presentedCalled_whenItemDidSelect() {
+	func test_presenterCalled_whenItemDidSelect() {
 		// Given
 		let indexPath = IndexPath(row: 0, section: 0)
 		sut.loadViewIfNeeded()
@@ -59,7 +59,7 @@ final class ProfileViewControllerTests: XCTestCase {
 		XCTAssertEqual(indexPath, presenterMock.repositoryIdIndexPathReceivedIndexPath)
 	}
 
-	func test_presentedCalled_whenCreateLayout() {
+	func test_presenterCalled_whenCreateLayout() {
 		// Given
 		let index = 0
 		sut.loadViewIfNeeded()
@@ -71,9 +71,8 @@ final class ProfileViewControllerTests: XCTestCase {
 		XCTAssertTrue(presenterMock.sectionForCalled)
 	}
 
-	func test_presentedCalled_whenSUserProlineNeeded() {
+	func test_presenterCalled_whenUserProfileNeeded() {
 		// Given
-		presenterMock.userProfileInfoReturnValue = HeaderViewModel.placeholder
 		sut.loadViewIfNeeded()
 
 		// When
@@ -81,6 +80,32 @@ final class ProfileViewControllerTests: XCTestCase {
 
 		// Then
 		XCTAssertTrue(presenterMock.userProfileInfoCalled)
+	}
+
+	func test_presenterCalled_whenUpdateProfileNameNeeded() {
+		// Given
+		let userProfile = "AnyUserProfile"
+		sut.loadViewIfNeeded()
+
+		// When
+		sut.requestUserProfile(userProfile: userProfile)
+
+		// Then
+		XCTAssertTrue(presenterMock.updateProfileNameAndLoadDataNewProfileNameCalled)
+		XCTAssertEqual(presenterMock.updateProfileNameAndLoadDataNewProfileNameReceivedNewProfileName, userProfile)
+	}
+
+	func test_presenterCalled_whenUpdateCredentialsNeeded() {
+		// Given
+		let credentials = "AnyCredentials"
+		sut.loadViewIfNeeded()
+
+		// When
+		sut.requestUserProfile(credentials: credentials)
+
+		// Then
+		XCTAssertTrue(presenterMock.updateCredentialsAndLoadDataNewCredentialsCalled)
+		XCTAssertEqual(presenterMock.updateCredentialsAndLoadDataNewCredentialsReceivedNewCredentials, credentials)
 	}
 }
 

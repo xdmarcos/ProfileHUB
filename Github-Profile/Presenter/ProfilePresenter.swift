@@ -11,13 +11,13 @@ import Apollo
 import KeyChain
 
 protocol ProfilePresenting {
-	func getUserProfile()
+	func loadUserProfileData()
 	func section(for index: Int) -> Section?
 	func userProfileInfo() -> HeaderViewModel?
 	func reloadData()
 	func repositoryId(indexPath: IndexPath)
-	func updateProfileName(newProfileName: String)
-	func updateCredentials(newCredentials: String)
+	func updateProfileNameAndLoadData(newProfileName: String)
+	func updateCredentialsAndLoadData(newCredentials: String)
 }
 
 final class ProfilePresenter: ProfilePresenting {
@@ -35,11 +35,12 @@ final class ProfilePresenter: ProfilePresenting {
 		credentials = configuration.personalAccessToken
 	}
 	
-	func getUserProfile() {
+	func loadUserProfileData() {
 		updateCredentialsWithStoredValueIfNeeded()
 
 		if shouldContinueAfterCheckRequiredItems() {
 			view?.showLoaderIndicator()
+			saveCredentialsIfNeeded(token: credentials.value)
 			getUserFullProfile(profileName: profileNameToFetch.value) { [weak self] error in
 				guard let self = self,
 				error == nil else { return }
@@ -49,7 +50,6 @@ final class ProfilePresenter: ProfilePresenting {
 					screenTitle: "profile_summary_title".localized,
 					sections: self.sections
 				)
-				self.saveCredentials(token: self.credentials.value)
 			}
 		}
 	}
@@ -84,12 +84,14 @@ final class ProfilePresenter: ProfilePresenting {
 		view?.repositoryItemDidFind(item: item)
 	}
 
-	func updateProfileName(newProfileName: String) {
+	func updateProfileNameAndLoadData(newProfileName: String) {
 		profileNameToFetch = .profileName(newProfileName)
+		loadUserProfileData()
 	}
 
-	func updateCredentials(newCredentials: String) {
-		credentials = .token(newCredentials)
+	func updateCredentialsAndLoadData(newCredentials: String) {
+		updateCredentials(newCredentials: newCredentials)
+		loadUserProfileData()
 	}
 }
 
@@ -261,6 +263,10 @@ private extension ProfilePresenter {
 		view?.displayForm(for: profileNameToFetch, viewModel: createProfileNameForm())
 	}
 
+	func updateCredentials(newCredentials: String) {
+		credentials = .token(newCredentials)
+	}
+
 	func updateCredentialsWithStoredValueIfNeeded() {
 		guard  let storedCredentials = validStoredCredentials(),
 		   storedCredentials != credentials.value  else {
@@ -275,8 +281,15 @@ private extension ProfilePresenter {
 		return stored
 	}
 
-	func saveCredentials(token: String) {
-		KeyChain.set(value: token, forKey: Constants.keyChainCredentialsKey)
+	func saveCredentialsIfNeeded(token: String) {
+		guard let savedCredentials = validStoredCredentials() else {
+			KeyChain.set(value: token, forKey: Constants.keyChainCredentialsKey)
+			return
+		}
+
+		if savedCredentials != token {
+			KeyChain.set(value: token, forKey: Constants.keyChainCredentialsKey)
+		}
 	}
 
 	func removeStoredCredentials() {

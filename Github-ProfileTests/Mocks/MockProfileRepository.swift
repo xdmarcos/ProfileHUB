@@ -2,14 +2,14 @@
 // MockProfileRepository.swift
 // Github-ProfileTests
 //
-// Created by Marcos González on 2021.
+// Created by Marcos González on 2022.
 // 
 //
 
 import Foundation
 @testable import Github_Profile
 
-// sourcery: AutoMockable
+// sourcery: AutoMockable, mockName=MockProfileRepository
 extension ProfileRepositoryProtocol { }
 
 // sourcery:inline:auto:ProfileRepositoryProtocol.AutoMockable
@@ -18,7 +18,7 @@ extension ProfileRepositoryProtocol { }
 
 /// The code in this block is automatically generated using Sourcery. Do not edit this code, it will be overwritten.
 /// To update this code, run 'sourcery' from the terminal.
-final class MockProfileRepositoryProtocol: ProfileRepositoryProtocol {
+final class MockProfileRepository: ProfileRepositoryProtocol {
 
 	// MARK: userProfileRepositories
 
