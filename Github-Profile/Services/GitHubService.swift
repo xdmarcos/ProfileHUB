@@ -8,13 +8,17 @@
 
 import Foundation
 
-struct GithubService: GraphQLService {
+struct GitHubService: GraphQLService {
+	private var token: String
+	init(token: String) {
+		self.token = token
+	}
+
 	var url: URL {
 		URL(string: "https://api.github.com/graphql")!
 	}
 
-	// TODO: hide credentials
-	var token: GraphQLToken {
-		GraphQLToken(type: .bearer, value: QueryItems.ghPersonalToken)
+	var credentials: GraphQLToken {
+		GraphQLToken(type: .bearer, value: token)
 	}
 }

@@ -7,8 +7,10 @@
 //
 
 import Foundation
+import Apollo
 
 public protocol GraphQLProviderProtocol {
 	var service: GraphQLService { get }
+	func fetch<Query: GraphQLQuery>(query: Query,cachePolicy: CachePolicy, resultHandler: GraphQLResultHandler<Query.Data>?)
 	func clearCache()
 }

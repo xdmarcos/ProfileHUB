@@ -30,3 +30,7 @@
 
 "repository_detail_title" = "Repository Detail";
 "repository_all_title" = "Repositories";
+
+"form_general_alert_info_title" = "Info";
+"form_userprofile_alert_requirement_description" = "Geef het GitHub-gebruikersprofiel op waarvan u informatie wilt ophalen.";
+"form_pat_alert_description" = "Om toegang te krijgen tot de GitHub API is een token vereist (https://docs.github.com/en/graphql). Voer uw PAT-balg in of handmatig in het bestand `GitHubConfiguration.swift`. Als je het al hebt toegevoegd, is het misschien verkeerd geformatteerd of verlopen.";

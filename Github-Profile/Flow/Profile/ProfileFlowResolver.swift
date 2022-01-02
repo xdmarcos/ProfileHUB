@@ -9,14 +9,14 @@
 import UIKit
 
 protocol ProfileFlowResolver {
-	func resolveProfileViewController(delegate: ProfileViewControllerDelegate) -> UIViewController
+	func resolveProfileViewController(delegate: ProfileViewControllerDelegate, configuration: Required) -> UIViewController
 	func resolveProfileDetailViewController(repoId: String) -> UIViewController
 	func resolveProfileAllRepositoriesViewController(repoType: Section.SectionType) -> UIViewController
 }
 
 final class ProfileFlowResolverModule: ProfileFlowResolver {
-	func resolveProfileViewController(delegate: ProfileViewControllerDelegate) -> UIViewController {
-		ProfileViewController.build(delegate: delegate)
+	func resolveProfileViewController(delegate: ProfileViewControllerDelegate, configuration: Required) -> UIViewController {
+		ProfileViewController.build(delegate: delegate, configuration: configuration)
 	}
 
 	func resolveProfileDetailViewController(repoId: String) -> UIViewController {

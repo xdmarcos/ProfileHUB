@@ -27,7 +27,7 @@ struct NetworkInterceptorProvider: InterceptorProvider {
 			RequestLoggingInterceptor(),
 			NetworkFetchInterceptor(client: self.client),
 			ResponseLoggingInterceptor(),
-			ResponseCodeInterceptor(),
+			ResponseCodeInterceptorWithErrorCode(),
 			JSONResponseParsingInterceptor(cacheKeyForObject: self.store.cacheKeyForObject),
 			AutomaticPersistedQueryInterceptor(),
 			CacheWriteInterceptor(store: self.store)

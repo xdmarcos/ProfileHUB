@@ -30,3 +30,7 @@
 
 "repository_detail_title" = "Repositorio Detalle";
 "repository_all_title" = "Repositorios";
+
+"form_general_alert_info_title" = "Info";
+"form_userprofile_alert_description" = "Por favor, indique el perfil de usuario de GitHub del que buscar información.";
+"form_pat_alert_description" = "Para acceder a la API de GitHub un token es necesario (https://docs.github.com/en/graphql). Por favor, indique su token de acceso personal aqui o añadalo manualmente en el fichero `GitHubConfiguration.swift`. Si ya lo ha agregado, es posible que tenga un formato incorrecto o que haya vencido.";

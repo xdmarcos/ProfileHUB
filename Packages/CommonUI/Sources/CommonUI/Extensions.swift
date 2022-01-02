@@ -93,15 +93,15 @@ public extension UIViewController {
 			preferredStyle: .alert
 		)
 		alert.addAction(UIAlertAction(title: "OK", style: .default))
-		self.present(alert, animated: true)
+		safePresent(alert, animated: true)
 	}
 
 	func showAlertForErrors(_ errors: [Error]) {
 		let message = errors
-		  .map { $0.localizedDescription }
-		  .joined(separator: "\n")
-		self.showAlert(title: "Error(s)", message: message)
-	  }
+			.map { $0.localizedDescription }
+			.joined(separator: "\n")
+		showAlert(title: "Error(s)", message: message)
+	}
 
 	func showAlertWithInputField(title: String, message: String, actionTitle: String = "Submit", cancelTitle: String = "Cancel", response: ((String?) -> Void)?) {
 		let alert = UIAlertController(
@@ -115,6 +115,7 @@ public extension UIViewController {
 		let submitAction = UIAlertAction(title: actionTitle, style: .default) { [unowned alert] _ in
 			let answer = alert.textFields![0]
 			response?(answer.text)
+			alert.dismiss(animated: true, completion: nil)
 		}
 
 		let cancelAction = UIAlertAction(title: cancelTitle, style: .destructive) { [unowned alert] _ in
@@ -124,7 +125,7 @@ public extension UIViewController {
 		alert.addAction(submitAction)
 		alert.addAction(cancelAction)
 
-		present(alert, animated: true)
+		safePresent(alert, animated: true)
 	}
 
 	func showLoadingView(loadOnLaunch: Bool = true, loadingViewController: ((LoadingViewController) -> Void)? = nil) {
@@ -136,7 +137,7 @@ public extension UIViewController {
 			loadingVC.startLoading()
 		}
 
-		present(loadingVC, animated: true) {
+		safePresent(loadingVC, animated: true) {
 			loadingViewController?(loadingVC)
 		}
 	}
@@ -146,5 +147,15 @@ public extension UIViewController {
 		loadingVC.stopLoading()
 		loadingVC.modalTransitionStyle = .crossDissolve
 		loadingVC.dismiss(animated: true, completion: nil)
+	}
+
+	private func safePresent(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil) {
+		if let presented = presentedViewController {
+			presented.dismiss(animated: false) { [weak self] in
+				self?.present(viewControllerToPresent, animated: flag, completion: completion)
+			}
+		} else if !(navigationController?.visibleViewController?.isKind(of: UIAlertController.self))! {
+			present(viewControllerToPresent, animated: flag, completion: completion)
+		}
 	}
 }

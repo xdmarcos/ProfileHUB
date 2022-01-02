@@ -8,13 +8,14 @@
 import UIKit
 import CommonUI
 
-protocol ProfileViewDisplayable: AnyObject {
+protocol ProfileViewDisplaying: AnyObject {
 	func displayView(screenTitle: String, sections: [Section])
 	func reloadData(with sections: [Section])
 	func showLoaderIndicator()
 	func hideLoaderIndicator()
 	func showErrorMessage(title: String, message: String)
 	func repositoryItemDidFind(item: Repository)
+	func displayForm(for item: Required.Item, viewModel: FormViewModel)
 }
 
 protocol ProfileViewControllerDelegate: AnyObject {
@@ -25,12 +26,12 @@ protocol ProfileViewControllerDelegate: AnyObject {
 final class ProfileViewController: UIViewController {
 	weak var delegate: ProfileViewControllerDelegate?
 
-	private(set) var presenter: ProfilePresentable
+	private(set) var presenter: ProfilePresenting
 	private(set) var profileDatasource: UICollectionViewDiffableDataSource<Section, Repository>?
 	private(set) var sceneView = ProfileView()
 	private var refreshControl = UIRefreshControl()
 
-	public init(presenter: ProfilePresentable) {
+	public init(presenter: ProfilePresenting) {
 		self.presenter = presenter
 
 		super.init(nibName: nil, bundle: nil)
@@ -48,9 +49,8 @@ final class ProfileViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-
 		setupUI()
-		infornViewDidLoad()
+		requestData()
 	}
 
 	// MARK: Actions
@@ -99,8 +99,8 @@ extension ProfileViewController: UICollectionViewDelegate {
 }
 
 extension ProfileViewController {
-	func infornViewDidLoad() {
-		presenter.viewDidLoad()
+	func requestData() {
+		presenter.getUserProfile()
 	}
 
 	func requestReloadData() {
@@ -115,12 +115,22 @@ extension ProfileViewController {
 		presenter.section(for: index)
 	}
 
-	func requestUserProfileInfo() -> HeaderViewModel {
+	func requestUserProfileInfo() -> HeaderViewModel? {
 		presenter.userProfileInfo()
+	}
+
+	func requestUserProfile(userProfile: String) {
+		presenter.updateProfileName(newProfileName: userProfile)
+		presenter.getUserProfile()
+	}
+
+	func requestUserProfile(credentials: String) {
+		presenter.updateCredentials(newCredentials: credentials)
+		presenter.getUserProfile()
 	}
 }
 
-extension ProfileViewController: ProfileViewDisplayable {
+extension ProfileViewController: ProfileViewDisplaying {
 	func displayView(screenTitle: String, sections: [Section]) {
 		title = screenTitle
 		profileDatasource = createDatasource()
@@ -148,11 +158,26 @@ extension ProfileViewController: ProfileViewDisplayable {
 	}
 
 	func showErrorMessage(title: String, message: String) {
+		self.title = title
 		showAlert(title: title, message: message)
 	}
 
 	func repositoryItemDidFind(item: Repository) {
-		DLog("Selected repo: \(item)")
 		delegate?.navigateToDetail(repositoryID: item.id.uuidString)
+	}
+
+	func displayForm(for item: Required.Item, viewModel: FormViewModel) {
+		let action: (String?) -> Void = { [weak self] response in
+			guard let self = self,
+				  let userValue = response else { return }
+			switch item{
+			case .profileName:
+				self.requestUserProfile(userProfile: userValue)
+			case .token:
+				self.requestUserProfile(credentials: userValue)
+			}
+		}
+
+ 		showAlertWithInputField(title: viewModel.title, message: viewModel.message, response: action)
 	}
 }

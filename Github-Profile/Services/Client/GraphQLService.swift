@@ -10,5 +10,5 @@ import Foundation
 
 public protocol GraphQLService {
 	var url: URL { get }
-	var token: GraphQLToken { get }
+	var credentials: GraphQLToken { get }
 }

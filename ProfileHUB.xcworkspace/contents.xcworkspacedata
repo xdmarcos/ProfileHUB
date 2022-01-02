@@ -8,6 +8,9 @@
       location = "group:"
       name = "Packages">
       <FileRef
+         location = "group:Packages/KeyChain">
+      </FileRef>
+      <FileRef
          location = "group:Packages/Common">
       </FileRef>
       <FileRef

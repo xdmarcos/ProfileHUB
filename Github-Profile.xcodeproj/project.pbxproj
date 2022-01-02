@@ -8,8 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		A50D04A72781BAFC0095E648 /* Common in Frameworks */ = {isa = PBXBuildFile; productRef = A50D04A62781BAFC0095E648 /* Common */; };
-		A50D04A92781BB010095E648 /* CommonUI in Frameworks */ = {isa = PBXBuildFile; productRef = A50D04A82781BB010095E648 /* CommonUI */; };
 		A50D04AB2781BB050095E648 /* ImageCache in Frameworks */ = {isa = PBXBuildFile; productRef = A50D04AA2781BB050095E648 /* ImageCache */; };
+		A50D04B52781CBD60095E648 /* FormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50D04B42781CBD60095E648 /* FormViewModel.swift */; };
+		A50F0840278215D10056F393 /* KeyChain in Frameworks */ = {isa = PBXBuildFile; productRef = A50F083F278215D10056F393 /* KeyChain */; };
+		A50F0842278217D50056F393 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50F0841278217D50056F393 /* Constants.swift */; };
+		A50F084427821CB90056F393 /* ResponseCodeInterceptorWithErrorCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50F084327821CB90056F393 /* ResponseCodeInterceptorWithErrorCode.swift */; };
+		A50F0846278220670056F393 /* GraphQLServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50F0845278220670056F393 /* GraphQLServiceError.swift */; };
+		A534E3B727824D4D008D8252 /* CommonUI in Frameworks */ = {isa = PBXBuildFile; productRef = A534E3B627824D4D008D8252 /* CommonUI */; };
+		A534E3B927825539008D8252 /* RepositoryWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A534E3B827825539008D8252 /* RepositoryWrapper.swift */; };
 		A557704A277E23B6002964E7 /* ProfileViewController+FlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5577049277E23B6002964E7 /* ProfileViewController+FlowLayout.swift */; };
 		A557704C277E2664002964E7 /* ProfileViewController+Datasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A557704B277E2664002964E7 /* ProfileViewController+Datasource.swift */; };
 		A557704E277E46AC002964E7 /* ProfileType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A557704D277E46AC002964E7 /* ProfileType.swift */; };
@@ -77,6 +83,11 @@
 /* Begin PBXFileReference section */
 		A50D04B22781C0560095E648 /* profilehub-stage.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "profilehub-stage.xcconfig"; sourceTree = "<group>"; };
 		A50D04B32781C0600095E648 /* profilehub-prod.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "profilehub-prod.xcconfig"; sourceTree = "<group>"; };
+		A50D04B42781CBD60095E648 /* FormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewModel.swift; sourceTree = "<group>"; };
+		A50F0841278217D50056F393 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		A50F084327821CB90056F393 /* ResponseCodeInterceptorWithErrorCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseCodeInterceptorWithErrorCode.swift; sourceTree = "<group>"; };
+		A50F0845278220670056F393 /* GraphQLServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphQLServiceError.swift; sourceTree = "<group>"; };
+		A534E3B827825539008D8252 /* RepositoryWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryWrapper.swift; sourceTree = "<group>"; };
 		A5577049277E23B6002964E7 /* ProfileViewController+FlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileViewController+FlowLayout.swift"; sourceTree = "<group>"; };
 		A557704B277E2664002964E7 /* ProfileViewController+Datasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileViewController+Datasource.swift"; sourceTree = "<group>"; };
 		A557704D277E46AC002964E7 /* ProfileType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileType.swift; sourceTree = "<group>"; };
@@ -154,8 +165,9 @@
 				A50D04AB2781BB050095E648 /* ImageCache in Frameworks */,
 				A5F7DCC3277F15C900F8E1FF /* Apollo in Frameworks */,
 				A5F7DCC5277F15C900F8E1FF /* ApolloSQLite in Frameworks */,
+				A534E3B727824D4D008D8252 /* CommonUI in Frameworks */,
 				A50D04A72781BAFC0095E648 /* Common in Frameworks */,
-				A50D04A92781BB010095E648 /* CommonUI in Frameworks */,
+				A50F0840278215D10056F393 /* KeyChain in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,6 +251,9 @@
 				A592BD4D277601EE0019DC82 /* SectionHeaderViewModel.swift */,
 				A573A8FD2778FCF500B30B5E /* UserProfileQueryResponse.swift */,
 				A557704D277E46AC002964E7 /* ProfileType.swift */,
+				A50D04B42781CBD60095E648 /* FormViewModel.swift */,
+				A50F0841278217D50056F393 /* Constants.swift */,
+				A534E3B827825539008D8252 /* RepositoryWrapper.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -300,10 +315,12 @@
 				A5D866D52778DE0E002CE949 /* GraphQLToken.swift */,
 				A573A8F92778F70300B30B5E /* GraphQLProviderProtocol.swift */,
 				A5D866CC2778DAC5002CE949 /* GraphQLProvider.swift */,
+				A50F0845278220670056F393 /* GraphQLServiceError.swift */,
 				A5D866CF2778DC6F002CE949 /* NetworkInterceptorProvider.swift */,
 				A5D866D92778E498002CE949 /* AuthTokenInterceptor.swift */,
 				A5D866D72778DF33002CE949 /* RequestLoggingInterceptor.swift */,
 				A5D866D12778DCBA002CE949 /* ResponseLoggingInterceptor.swift */,
+				A50F084327821CB90056F393 /* ResponseCodeInterceptorWithErrorCode.swift */,
 				A573A8FF277906A000B30B5E /* Helpers.swift */,
 			);
 			path = Client;
@@ -347,7 +364,7 @@
 			isa = PBXGroup;
 			children = (
 				A5F7DCD3277F3C6C00F8E1FF /* Mocks */,
-				A5F7DCCF277F354400F8E1FF /* Presenter */,
+				A5F7DCCF277F354400F8E1FF /* Profile */,
 			);
 			path = "Github-ProfileTests";
 			sourceTree = "<group>";
@@ -401,13 +418,13 @@
 			path = RepositoryAll;
 			sourceTree = "<group>";
 		};
-		A5F7DCCF277F354400F8E1FF /* Presenter */ = {
+		A5F7DCCF277F354400F8E1FF /* Profile */ = {
 			isa = PBXGroup;
 			children = (
 				A5F7DCD1277F378900F8E1FF /* ProfilePresenterTests.swift */,
 				A5A7F7EE277F52590004BCA3 /* ProfileViewControllerTests.swift */,
 			);
-			path = Presenter;
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		A5F7DCD3277F3C6C00F8E1FF /* Mocks */ = {
@@ -442,8 +459,9 @@
 				A5F7DCC2277F15C900F8E1FF /* Apollo */,
 				A5F7DCC4277F15C900F8E1FF /* ApolloSQLite */,
 				A50D04A62781BAFC0095E648 /* Common */,
-				A50D04A82781BB010095E648 /* CommonUI */,
 				A50D04AA2781BB050095E648 /* ImageCache */,
+				A50F083F278215D10056F393 /* KeyChain */,
+				A534E3B627824D4D008D8252 /* CommonUI */,
 			);
 			productName = "Github-Profile";
 			productReference = A5E57D0227723C6400DD0ECD /* Github-Profile.app */;
@@ -565,7 +583,9 @@
 				A573A8F62778F38600B30B5E /* ProfileRepositoryProtocol.swift in Sources */,
 				A5577053277EF092002964E7 /* ProfileFlowCoordinator.swift in Sources */,
 				A573A8FA2778F70300B30B5E /* GraphQLProviderProtocol.swift in Sources */,
+				A50D04B52781CBD60095E648 /* FormViewModel.swift in Sources */,
 				A5F7DCCE277F2BD900F8E1FF /* RepositoryAllViewController.swift in Sources */,
+				A50F0842278217D50056F393 /* Constants.swift in Sources */,
 				A592BD58277602DB0019DC82 /* HeaderView.swift in Sources */,
 				A557705B277EF9F9002964E7 /* RootFlowCoordinator.swift in Sources */,
 				A5F7DCCB277F2BB700F8E1FF /* RepositoryDetailViewController.swift in Sources */,
@@ -580,6 +600,7 @@
 				A592BD6327760CDC0019DC82 /* ProfileViewController+Build.swift in Sources */,
 				A5577057277EF201002964E7 /* ProfileFlowCoordinator+Build.swift in Sources */,
 				A592BD50277601EE0019DC82 /* Section.swift in Sources */,
+				A534E3B927825539008D8252 /* RepositoryWrapper.swift in Sources */,
 				A5E57D0627723C6400DD0ECD /* AppDelegate.swift in Sources */,
 				A557704A277E23B6002964E7 /* ProfileViewController+FlowLayout.swift in Sources */,
 				A557705F277EFA12002964E7 /* RootFlowResolver.swift in Sources */,
@@ -590,6 +611,7 @@
 				A5D866DC2778E62F002CE949 /* GraphQLService.swift in Sources */,
 				A592BD5E277603070019DC82 /* ProfileViewController.swift in Sources */,
 				A592BD5A277602DB0019DC82 /* RepositoryTileCell.swift in Sources */,
+				A50F084427821CB90056F393 /* ResponseCodeInterceptorWithErrorCode.swift in Sources */,
 				A592BD5F277603070019DC82 /* ProfileView.swift in Sources */,
 				A573A9022779D1FE00B30B5E /* GitHubConfiguration.swift in Sources */,
 				A573A900277906A000B30B5E /* Helpers.swift in Sources */,
@@ -598,6 +620,7 @@
 				A557704C277E2664002964E7 /* ProfileViewController+Datasource.swift in Sources */,
 				A592BD4F277601EE0019DC82 /* HeaderViewModel.swift in Sources */,
 				A573A8FE2778FCF500B30B5E /* UserProfileQueryResponse.swift in Sources */,
+				A50F0846278220670056F393 /* GraphQLServiceError.swift in Sources */,
 				A5D866D62778DE0E002CE949 /* GraphQLToken.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1168,13 +1191,17 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = Common;
 		};
-		A50D04A82781BB010095E648 /* CommonUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = CommonUI;
-		};
 		A50D04AA2781BB050095E648 /* ImageCache */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ImageCache;
+		};
+		A50F083F278215D10056F393 /* KeyChain */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = KeyChain;
+		};
+		A534E3B627824D4D008D8252 /* CommonUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CommonUI;
 		};
 		A5F7DCC2277F15C900F8E1FF /* Apollo */ = {
 			isa = XCSwiftPackageProductDependency;

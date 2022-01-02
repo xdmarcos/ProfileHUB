@@ -19,7 +19,8 @@ final class ProfileFlowCoordinator: FlowCoordination {
 	}
 
 	func start() {
-		let profileVC = resolver.resolveProfileViewController(delegate: self)
+		let githubConf = Configuration.github
+		let profileVC = resolver.resolveProfileViewController(delegate: self, configuration: githubConf)
 		navigationController.viewControllers = [profileVC]
 	}
 }

@@ -38,7 +38,9 @@ extension ProfileViewController {
 					return nil
 				}
 
-				sectionHeader.configure(viewModel: self.requestUserProfileInfo())
+				guard let headerViewModel = self.requestUserProfileInfo() else { return sectionHeader }
+				
+				sectionHeader.configure(viewModel: headerViewModel)
 				return sectionHeader
 			} else {
 				guard let sectionHeader = collectionView.dequeueReusableSupplementaryView(
@@ -49,8 +51,7 @@ extension ProfileViewController {
 					return nil
 				}
 
-				guard let firstRepo = datasource.itemIdentifier(for: indexPath),
-					  let section = datasource.snapshot().sectionIdentifier(containingItem: firstRepo) else { return nil }
+				guard let section = self.requestSectionFor(index: indexPath.section) else { return nil }
 
 				sectionHeader.configure(viewModel: section.headerViewModel)
 				return sectionHeader
