@@ -1,0 +1,194 @@
+
+{##}
+{% macro swiftifyMethodName name %}{{ name | replace:"(","_" | replace:")","" | replace:":","_" | replace:"`","" | snakeToCamelCase | lowerFirstWord }}{% endmacro %}
+{##}
+{% macro methodThrowableErrorDeclaration method %}
+	{% call accessLevel %}var {% call swiftifyMethodName method.selectorName %}ThrowableError: Error?
+{% endmacro %}
+{##}
+{% macro methodThrowableErrorUsage method %}
+		if let error = {% call swiftifyMethodName method.selectorName %}ThrowableError {
+			throw error
+		}
+{% endmacro %}
+{##}
+{% macro removeExplicitUnwrap variableName %}{{ variableName | replace:"!","" }}{% endmacro %}
+{##}
+{% macro methodReceivedParameters method %}
+	{%if method.parameters.count == 1 %}
+		{% call swiftifyMethodName method.selectorName %}Received{% for param in method.parameters %}{{ param.name|upperFirstLetter }} = {{ param.name }}{% endfor %}
+		{% call swiftifyMethodName method.selectorName %}ReceivedInvocations.append({% for param in method.parameters %}{{ param.name }}){% endfor %}
+	{% else %}
+	{% if not method.parameters.count == 0 %}
+		{% call swiftifyMethodName method.selectorName %}ReceivedArguments = ({% for param in method.parameters %}{{ param.name }}: {{ param.name }}{% if not forloop.last%}, {% endif %}{% endfor %})
+		{% call swiftifyMethodName method.selectorName %}ReceivedInvocations.append(({% for param in method.parameters %}{{ param.name }}: {{ param.name }}{% if not forloop.last%}, {% endif %}{% endfor %}))
+	{% endif %}
+	{% endif %}
+{% endmacro %}
+{##}
+{% macro methodClosureName method %}{% call swiftifyMethodName method.selectorName %}Closure{% endmacro %}
+{##}
+{% macro closureReturnTypeName method %}{% if method.isOptionalReturnType %}{{ 'Any' if method.isGeneric else method.unwrappedReturnTypeName }}?{% else %}{{ 'Any' if method.isGeneric else method.returnTypeName }}{% endif %}{% endmacro %}
+{##}
+{% macro methodClosureDeclaration method %}
+	{% call accessLevel %}var {% call methodClosureName method %}: (({% for param in method.parameters %}{{ 'Any' if method.isGeneric else param.typeName }}{% if not forloop.last %}, {% endif %}{% endfor %}) {% if method.throws %}throws {% endif %}-> {% if method.isInitializer %}Void{% else %}{% call closureReturnTypeName method %}{% endif %})?
+{% endmacro %}
+{##}
+{% macro methodClosureCallParameters method %}{% for param in method.parameters %}{{ param.name }}{% if not forloop.last %}, {% endif %}{% endfor %}{% endmacro %}
+{##}
+{% macro mockMethod method %}
+	// MARK: {{ method.shortName }}
+
+	{% if method.throws %}
+		{% call methodThrowableErrorDeclaration method %}
+	{% endif %}
+	{% if not method.isInitializer %}
+	{% call accessLevel %}var {% call swiftifyMethodName method.selectorName %}CallsCount = 0
+	{% call accessLevel %}var {% call swiftifyMethodName method.selectorName %}Called: Bool {
+		{% call swiftifyMethodName method.selectorName %}CallsCount > 0
+	}
+	{% endif %}
+	{% if method.parameters.count == 1 %}
+	{% call accessLevel %}var {% call swiftifyMethodName method.selectorName %}Received{% for param in method.parameters %}{{ param.name|upperFirstLetter }}: {{ '(' if param.isClosure or param.typeName.isProtocolComposition and not param.isOptional }}{{ param.typeName.unwrappedTypeName }}{{ ')' if param.isClosure or param.typeName.isProtocolComposition and not param.isOptional }}?{% endfor %}
+	{% call accessLevel %}var {% call swiftifyMethodName method.selectorName %}ReceivedInvocations{% for param in method.parameters %}: [{{ '(' if param.isClosure }}{{ param.typeName.unwrappedTypeName }}{{ ')' if param.isClosure }}{%if param.typeName.isOptional%}?{%endif%}]{% endfor %} = []
+	{% elif not method.parameters.count == 0 %}
+	{% call accessLevel %}var {% call swiftifyMethodName method.selectorName %}ReceivedArguments: ({% for param in method.parameters %}{{ param.name }}: {{ param.unwrappedTypeName if param.typeAttributes.escaping else param.typeName }}{{ ', ' if not forloop.last }}{% endfor %})?
+	{% call accessLevel %}var {% call swiftifyMethodName method.selectorName %}ReceivedInvocations: [({% for param in method.parameters %}{{ param.name }}: {{ param.unwrappedTypeName if param.typeAttributes.escaping else param.typeName }}{{ ', ' if not forloop.last }}{% endfor %})] = []
+	{% endif %}
+	{% if not method.returnTypeName.isVoid and not method.isInitializer %}
+	{% call accessLevel %}var {% call swiftifyMethodName method.selectorName %}ReturnValue: {% if method.isGeneric %}'Any'{% else %}{% call returnTypeName method %}{% endif %}{{ '!' if not method.isOptionalReturnType }}
+	{% endif %}
+	{% call methodClosureDeclaration method %}
+
+{% if method.isInitializer %}
+	{% call accessLevel %}required {{ method.name }} {
+		{% call methodReceivedParameters method %}
+		{% call methodClosureName method %}?({% call methodClosureCallParameters method %})
+	}
+{% elif method.isGeneric %}
+	{% call accessLevel %}{% call override method.selectorName %}func {{ method.name }}{{ ' throws' if method.throws }}{% if not method.returnTypeName.isVoid %} -> {{ method.returnTypeName }}{% endif %} {
+		fatalError("")
+	}
+{% else %}
+	{% call accessLevel %}{% call override method.selectorName %}func {{ method.name }}{{ ' throws' if method.throws }}{% if not method.returnTypeName.isVoid %} -> {{ method.returnTypeName }}{% endif %} {
+		{% if method.throws %}
+		{% call methodThrowableErrorUsage method %}
+		{% endif %}
+		{% call swiftifyMethodName method.selectorName %}CallsCount += 1
+		{% call methodReceivedParameters method %}
+		{% if method.returnTypeName.isVoid %}
+		{% if method.throws %}try {% endif %}{% call methodClosureName method %}?({% call methodClosureCallParameters method %})
+		{% else %}
+		return {{ 'try ' if method.throws }}{% call methodClosureName method %}.map({ {{ 'try ' if method.throws }}$0({% call methodClosureCallParameters method %}) }) ?? {% call swiftifyMethodName method.selectorName %}ReturnValue{{ ' as Any' if method.returnTypeName.name == "Any" }}
+		{% endif %}
+	}
+{% endif %}
+{% endmacro %}
+{##}
+{% macro mockOptionalVariable variable %}
+
+	// MARK: {% call mockedVariableName variable %}
+
+	{% call accessLevel %}var {% call mockedVariableName variable %}GetCallsCount = 0
+	{% call accessLevel %}var {% call mockedVariableName variable %}GetCalled: Bool { {% call mockedVariableName variable %}GetCallsCount > 0 }
+	{% call accessLevel %}var {% call mockedVariableName variable %}SetCallsCount = 0
+	{% call accessLevel %}var {% call mockedVariableName variable %}SetCalled: Bool { {% call mockedVariableName variable %}SetCallsCount > 0 }
+	{% call accessLevel %}var {% call mockedVariableName variable %}: {% call typeName variable %} {
+		get {
+			{% call mockedVariableName variable %}GetCallsCount += 1
+			return {% call underlyingMockedVariableName variable %}
+		}
+		set {
+			{% call mockedVariableName variable %}SetCallsCount += 1
+			{% call underlyingMockedVariableName variable %} = newValue
+		}
+	}
+	{% call accessLevel %}var {% call underlyingMockedVariableName variable %}: {% call typeName variable %}
+{##}
+{% endmacro %}
+{##}
+{% macro mockNonOptionalArrayOrDictionaryVariable variable %}
+	{% call accessLevel %}var {% call mockedVariableName variable %}: {% call typeName variable %} = {% if variable.isArray %}[]{% elif variable.isDictionary %}[:]{% endif %}
+{% endmacro %}
+{##}
+{% macro mockNonOptionalVariable variable %}
+
+	// MARK: {% call mockedVariableName variable %}
+
+	{% call accessLevel %}var {% call mockedVariableName variable %}GetCallsCount = 0
+	{% call accessLevel %}var {% call mockedVariableName variable %}GetCalled: Bool { {% call mockedVariableName variable %}GetCallsCount > 0 }
+	{% call accessLevel %}var {% call mockedVariableName variable %}SetCallsCount = 0
+	{% call accessLevel %}var {% call mockedVariableName variable %}SetCalled: Bool { {% call mockedVariableName variable %}SetCallsCount > 0 }
+	{% call accessLevel %}var {% call mockedVariableName variable %}: {% call typeName variable %} {
+		get {
+			{% call mockedVariableName variable %}GetCallsCount += 1
+			return {% call underlyingMockedVariableName variable %}
+		}
+		set {
+			{% call mockedVariableName variable %}SetCallsCount += 1
+			{% call underlyingMockedVariableName variable %} = newValue
+		}
+	}
+	{% call accessLevel %}var {% call underlyingMockedVariableName variable %}: {% call typeName variable %}!
+{% endmacro %}
+{% macro underlyingMockedVariableName variable %}underlying{{ variable.name|upperFirstLetter }}{% endmacro %}
+{% macro mockedVariableName variable %}{{ variable.name }}{% endmacro %}
+{% macro mockMockedVariableName variable %}mock{{ variable.name|upperFirstLetter }}{% endmacro %}
+{% macro typeName variable %}{% if variable.typeName.isProtocolComposition and not variable.isOptional %}({{ variable.typeName }}){% else %}{{ variable.typeName }}{% endif %}{% endmacro %}
+{% macro returnTypeName method %}{% if method.returnTypeName.isProtocolComposition and not method.returnTypeName.isOptional %}({{ method.returnTypeName }}){% else %}{{ method.returnTypeName }}{% endif %}{% endmacro %}
+{##}
+{% macro accessLevel %}{% if type|annotated:"accessLevel" %}{% if type.annotations.accessLevel == "public" %}{{type.annotations.accessLevel}} {% endif %}{% elif type.accessLevel == "public" %}{{type.accessLevel}} {% endif %}{% endmacro %}
+{##}
+{% macro override name %}{% if overrideList|contains:|name| %}override {% endif %}{% endmacro %}
+{##}
+{% macro addDefaultInit %}
+	{% for method in type.allMethods|initializer %}
+	{% empty %}
+		{% call defaultInit %}
+	{% endfor %}
+{% endmacro %}
+{##}
+{% macro defaultInit %}
+
+	// MARK: init
+
+	{% call accessLevel %}{% call override "init" %}init() { }
+{% endmacro %}
+{##}
+{% for type in types.protocols where type|annotated:"AutoMockable" %}{% if type.name != "AutoMockable" %}
+{% set overrideList %}|{{type.annotations.overrides | join:"|" }}|{% endset %}
+
+// sourcery:inline:auto:{{ type.name }}.AutoMockable
+
+// swiftlint:disable all
+
+/// The code in this block is automatically generated using Sourcery. Do not edit this code, it will be overwritten.
+/// To update this code, run 'sourcery' from the terminal.
+{% if type|annotated:"baseClass" %}
+{% call accessLevel %}final class {% if type|annotated:"mockName" %}{{type.annotations.mockName}}{% else %}Mock{{ type.name }}{% endif %}: {{type.annotations.baseClass}}, {{ type.name }} {
+{%else%}
+{% call accessLevel %}final class {% if type|annotated:"mockName" %}{{type.annotations.mockName}}{% else %}Mock{{ type.name }}{% endif %}: {{ type.name }} {
+{% endif %}
+{% if type|annotated:"accessLevel" %}
+	{% if type.annotations.accessLevel == "public" %}
+		{% call addDefaultInit %}
+	{% endif %}
+{% elif type.accessLevel == "public" %}
+	{% call addDefaultInit %}
+{% endif %}
+{##}
+{% for variable in type.allVariables|!definedInExtension %}
+	{% if variable.isOptional %}{% call mockOptionalVariable variable %}{% elif variable.isArray or variable.isDictionary %}{% call mockNonOptionalArrayOrDictionaryVariable variable %}{% else %}{% call mockNonOptionalVariable variable %}{% endif %}
+{% endfor %}
+{##}
+{% for method in type.allMethods|!definedInExtension %}
+
+	{% call mockMethod method %}
+{% endfor %}
+}
+{% endif %}
+
+// swiftlint:enable all
+
+// sourcery:end
+{% endfor %}

@@ -1,0 +1,72 @@
+
+query UserProfileRepos($login: String!) {
+  user(login: $login) {
+    avatarUrl
+    email
+    followers {
+      totalCount
+    }
+    following {
+      totalCount
+    }
+    id
+    login
+    name
+    pinnedItems(first: 3) {
+      nodes {
+        ... on Repository {
+          description
+          id
+          languages(first: 1) {
+            nodes {
+              name
+              color
+            }
+          }
+          name
+          owner {
+            avatarUrl
+            login
+          }
+          stargazerCount
+        }
+      }
+    }
+    topRepositories(first: 10, orderBy: {field: CREATED_AT, direction: DESC}) {
+      nodes {
+        description
+        id
+        languages(first: 1) {
+          nodes {
+            name
+            color
+          }
+        }
+        name
+        owner {
+          login
+          avatarUrl
+        }
+        stargazerCount
+      }
+    }
+    starredRepositories(first: 10, orderBy: {field: STARRED_AT, direction: DESC}) {
+      nodes {
+        description
+        id
+        languages(first: 1) {
+          nodes {
+            name
+            color
+          }
+        }
+        name
+        owner {
+          login
+          avatarUrl
+        }
+        stargazerCount
+      }
+    }
+  }
+}

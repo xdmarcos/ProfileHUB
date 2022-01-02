@@ -1,0 +1,26 @@
+
+query Pinned($login: String!) {
+  user(login: $login) {
+    id
+    pinnedItems(first: 3) {
+      nodes {
+        ... on Repository {
+          description
+          id
+          languages(first: 1) {
+            nodes {
+              name
+              color
+            }
+          }
+          name
+          owner {
+            avatarUrl
+            login
+          }
+          stargazerCount
+        }
+      }
+    }
+  }
+}

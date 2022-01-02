@@ -8,5 +8,29 @@
 
 "profile_summary_title" = "Perfil";
 "profile_refresh_title" = "Tira para refrescar";
+"profile_loading_title" = "Cargando...";
+
 "general_alert_error_title" = "Error";
 "general_alert_error_button_ok" = "OK";
+
+"profile_sections_title_pinned" = "Anclados";
+"profile_sections_title_top" = "Principales repositorios";
+"profile_sections_title_starred" = "Repositorios destacados";
+"profile_sections_pinned_action_title" = "Todos";
+"profile_sections_top_action_title" = "Todos";
+"profile_sections_starred_action_title" = "Todos";
+
+"profile_header_name_placeholder" = "Nombre";
+"profile_header_username_placeholder" = "usuario";
+"profile_header_email_placeholder" = "Correo electrónico";
+"profile_header_followers_title" = "seguidores";
+"profile_header_following_title" = "siguiendo";
+
+"profile_repository_language_placeholder" = "Text";
+
+"repository_detail_title" = "Repositorio Detalle";
+"repository_all_title" = "Repositorios";
+
+"form_general_alert_info_title" = "Info";
+"form_userprofile_alert_description" = "Por favor, indique el perfil de usuario de GitHub del que buscar información.";
+"form_pat_alert_description" = "Para acceder a la API de GitHub un token es necesario (https://docs.github.com/en/graphql). Por favor, indique su token de acceso personal aqui o añadalo manualmente en el fichero `GitHubConfiguration.swift`. Si ya lo ha agregado, es posible que tenga un formato incorrecto o que haya vencido.";

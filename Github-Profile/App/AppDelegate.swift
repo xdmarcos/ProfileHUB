@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Common
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {

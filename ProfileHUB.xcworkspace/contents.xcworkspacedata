@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:Github-Profile.xcodeproj">
+   </FileRef>
+   <Group
+      location = "group:"
+      name = "Packages">
+      <FileRef
+         location = "group:Packages/KeyChain">
+      </FileRef>
+      <FileRef
+         location = "group:Packages/Common">
+      </FileRef>
+      <FileRef
+         location = "group:Packages/CommonUI">
+      </FileRef>
+      <FileRef
+         location = "group:Packages/ImageCache">
+      </FileRef>
+   </Group>
+</Workspace>

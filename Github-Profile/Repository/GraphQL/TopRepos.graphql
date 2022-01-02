@@ -1,0 +1,24 @@
+
+query Top($login: String!) {
+  user(login: $login) {
+    id
+    topRepositories(first: 10, orderBy: {field: CREATED_AT, direction: DESC}) {
+      nodes {
+        description
+        id
+        languages(first: 1) {
+          nodes {
+            name
+            color
+          }
+        }
+        name
+        owner {
+          avatarUrl
+          login
+        }
+        stargazerCount
+      }
+    }
+  }
+}

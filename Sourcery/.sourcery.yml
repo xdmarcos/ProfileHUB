@@ -1,0 +1,9 @@
+sources:
+- ../Github-Profile
+- ../Github-ProfileTests
+- ../Packages
+
+templates:
+- Templates
+output:
+  Generated

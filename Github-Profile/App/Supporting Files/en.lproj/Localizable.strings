@@ -8,5 +8,30 @@
 
 "profile_summary_title" = "Profile";
 "profile_refresh_title" = "Pull to refresh";
+"profile_loading_title" = "Loading...";
+
 "general_alert_error_title" = "Error";
+"general_alert_graphQLerror_title" = "GraphQL Error";
 "general_alert_error_button_ok" = "OK";
+
+"profile_sections_title_pinned" = "Pinned";
+"profile_sections_title_top" = "Top repositories";
+"profile_sections_title_starred" = "Starred repositories";
+"profile_sections_pinned_action_title" = "View all";
+"profile_sections_top_action_title" = "View all";
+"profile_sections_starred_action_title" = "View all";
+
+"profile_header_name_placeholder" = "Name";
+"profile_header_username_placeholder" = "username";
+"profile_header_email_placeholder" = "email address";
+"profile_header_followers_title" = "followers";
+"profile_header_following_title" = "following";
+
+"profile_repository_language_placeholder" = "Text";
+
+"repository_detail_title" = "Repository Detail";
+"repository_all_title" = "Repositories";
+
+"form_general_alert_info_title" = "Info";
+"form_userprofile_alert_requirement_description" = "Please indicate the GitHub user profile to fetch information from";
+"form_pat_alert_description" = "To access the GitHub API a token is required (https://docs.github.com/en/graphql). Please enter your PAT bellow or manually to the file `GitHubConfiguration.swift`. If you have already added it it might be it is wrong formatted or expired.";

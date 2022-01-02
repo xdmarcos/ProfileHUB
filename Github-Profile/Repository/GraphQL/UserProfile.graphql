@@ -1,0 +1,16 @@
+
+query UserProfile($login: String!) {
+  user(login: $login) {
+    avatarUrl
+    email
+    followers {
+      totalCount
+    }
+    following {
+      totalCount
+    }
+    id
+    login
+    name
+  }
+}
