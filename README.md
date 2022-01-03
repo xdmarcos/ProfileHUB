@@ -16,7 +16,6 @@ The project uses:
 
 - Apollo GraphQL iOS framework [Docs](https://www.apollographql.com/docs/ios/).
 
-
 ## Author
 
 Marcos A. González Piñeiro
@@ -99,6 +98,18 @@ The peroject is configured to run in iOS 13.6 or later.
 
 📍 Add unit test target and tests
 
+## Assumptions
+
+During the initial analysis of the assigment I started thinking of what actually could bring value to it and if I decided to build my own components such as ImageCache or CommonUI.
+
+Make use of good software development principles as SOLID, Dependency injection and Dependency inversion and design patterns as MVP, Repository and Coordinator.
+
+Once I started thinking about this, my attention went to two main features:
+
+- Modularizate the project using local swift packages.
+
+- Enforce reusability and testability.
+
 ## Personal Goals
 
 I took this opportunity to experiment with new tools and frameworks (This is my first time working activly with GraphQL and Apollo) and pay attention to good practises.
@@ -117,10 +128,11 @@ I took this opportunity to experiment with new tools and frameworks (This is my 
 
 📥 Apply dependency injection and dependency inversion through protocol.
 
-
 ## Project Architecture
 
-This project follow the [MVP](https://en.wikipedia.org/wiki/Model–view–presenter) design pattern. It also makes use of the [Repository](https://cubettech.com/resources/blog/introduction-to-repository-design-pattern) and [Coordinator](https://khanlou.com/2015/01/the-coordinator/) patterns.
+This project follows the [MVP](https://en.wikipedia.org/wiki/Model–view–presenter) design pattern. It also makes use of the [Repository](https://cubettech.com/resources/blog/introduction-to-repository-design-pattern) and [Coordinator](https://khanlou.com/2015/01/the-coordinator/) patterns.
+
+The reason for it (besides it was also mentioned in the assigment as the architecture to apply) was that for the size of this project, ********MVP********   maintains the project structure simple enough and wihtout much boilerplate while still providing all the benefits of any other clean architecture. The main focus is reusability and testability.
 
 ## Dependencies
 
@@ -148,10 +160,6 @@ This project uses `Localizable.strings` and `InfoPlist.strings` to localize the 
 
 - ********Services:******** Contains the GitHub service implementation together with an GpraphQL client to provide the user profile/repositories from the  GraphQL server.
 
-## Architecture
-
-The project was build using the ********MVP********  design pattern. The reason for it (besides it was also mentioned in the assigment as the architecture to apply) was that for the size of this project, this pattern maintains the project structure simple enough and wihtout much boilerplate while still providing all the benefits of any other clean architecture. The main focus being on reusability and testability.
-
 ## Navigation
 
 For the current project, and with the intention of keeping things simple enough, the repositories from the provided QraphQL API will be shown in a UICollectionView.
@@ -167,33 +175,3 @@ The tests follow the Given/When/Then format.
 Ex. `testLoadData_whenItsAbleToLoadTheContent_updatesDataSource`
 
 For the generation of some mocks I used [Sourcery](https://github.com/krzysztofzablocki/Sourcery), but not as a project dependency. but installed locally using [Hombrew](https://brew.sh)
-
-## UI Tests
-
-The project at its current state doesn't contain any UI Tests.
-
-The plan was to do them by making use of the [KIF Framework](https://github.com/kif-framework/KIF) and following the [Robot Pattern](https://academy.realm.io/posts/kau-jake-wharton-testing-robots/).
-
-********Benefits:********
-
-- ********KIF:******** The benefits of this framework are several, among which I could highlight:
-
-- Allows you to perform functional tests on your views instead of integration tests.
-
-- The framework runs on the UnitTests target, which gives you the possibility to perform white box testing by mocking the dependencies. Something that it's not possible to do with the UITests targets.
-
-- Because it runs on the UnitTests target, we can skip the navigation to specific parts of the app, and directly load the screen in its required state.
-
-- ********Robot Pattern:******** The pattern is focused on splitting the `What` from the `How` Meaning that you have 2 entities responsable to run the set of tests. The first one is the `XCTestCase` which knows `What` to test and the second would be the `Robot` that knows how to execute the actions.
-
-## Assumptions
-
-During the initial analysis of the assigment I started thinking of what actually could bring value to it and if I decided to build my own components such as ImageCache or CommonUI.
-
-Make use of good software development principles as SOLID, Dependency injection and Dependency inversion and design patterns as MVP, Repository and Coordinator.
-
-Once I started thinking about this, my attention went to two main features:
-
-- Modularizate the project using local swift packages.
-
-- Enforce reusability and testability.
