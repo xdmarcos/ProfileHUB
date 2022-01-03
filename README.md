@@ -51,71 +51,71 @@ The peroject is configured to run in iOS 13.6 or later.
 
 ## Features
 
-- 👨‍💻 Fetch user profile from different GitHub users, the PROD (my personal user profile `xdmarcos`) and STAGE (open to the App's user to enter a desires user profile)
+👨‍💻 Fetch user profile from different GitHub users, the PROD (my personal user profile `xdmarcos`) and STAGE (open to the App's user to enter a desires user profile)
 
-- 👨‍💻Display content from GitHub GraphQL API in a UICollectionView with Diffable datasources and compositional layout.
+👨‍💻Display content from GitHub GraphQL API in a UICollectionView with Diffable datasources and compositional layout.
 
-- 👨‍💻 All the UI is written programmatically using UIKit and Autolayout.
+👨‍💻 All the UI is written programmatically using UIKit and Autolayout.
 
-- 👨‍💻 Creation of modules containing the reusable components using SPM.
+👨‍💻 Creation of modules containing the reusable components using SPM.
 
-- 👨‍💻 Accessibility support for Dynamic Font Sizing.
+👨‍💻 Accessibility support for Dynamic Font Sizing.
 
-- 👨‍💻 Beautiful UI in both Light and Dark mode.
+👨‍💻 Beautiful UI in both Light and Dark mode.
 
-- 👨‍💻 Localized into three languages: English(default), Spanish, Dutch.
+👨‍💻 Localized into three languages: English(default), Spanish, Dutch.
 
-- 👨‍💻 1 day in disk cache.
+👨‍💻 1 day in disk cache.
 
-- 👨‍💻 Pull to refresh.
+👨‍💻 Pull to refresh.
 
 ## Roadmap
 
-- ❒ Get familiar with GitHub GraphQL API project to understand it and test it.
+📍 Get familiar with GitHub GraphQL API project to understand it and test it.
 
-- ❒ Add project setup with 2 schemes and 4 configurations.
+📍 Add project setup with 2 schemes and 4 configurations.
 
-- ❒ Add view hierarchy and initial datasource.
+📍 Add view hierarchy and initial datasource.
 
-- ❒ Add MVP components and logic.
+📍 Add MVP components and logic.
 
-- ❒ Add Apollo and its configuration.
+📍 Add Apollo and its configuration.
 
-- ❒ Add GitHub GraphQL schema and user profile repositories queries.
+📍 Add GitHub GraphQL schema and user profile repositories queries.
 
-- ❒ Add GraphQLProvider (client+interceptors).
+📍 Add GraphQLProvider (client+interceptors).
 
-- ❒ Add Repository pattern implementation.
+📍 Add Repository pattern implementation.
 
-- ❒ Add packages to provide support to Image download and cahce, UI and common components.
+📍 Add packages to provide support to Image download and cahce, UI and common components.
 
-- ❒ Add support for diffable datasources.
+📍 Add support for diffable datasources.
 
-- ❒ Add flow coordinators.
+📍 Add flow coordinators.
 
-- ❒ Add support for dark mode and dynamic sizes.
+📍 Add support for dark mode and dynamic sizes.
 
-- ❒ Add locasitions for different languages.
+📍 Add locasitions for different languages.
 
-- ❒ Add unit test target and tests
+📍 Add unit test target and tests
 
 ## Personal Goals
 
 I took this opportunity to experiment with new tools and frameworks (This is my first time working activly with GraphQL and Apollo) and pay attention to good practises.
 
-- 🧩 Use MVP linked via protocols.
+🧩 Use MVP linked via protocols.
 
-- 👀 Try diffable datasources.
+👀 Try diffable datasources.
 
-- 📐Try compositional layouts.
+📐Try compositional layouts.
 
-- 🎛 Project configuration and schemes.
+🎛 Project configuration and schemes.
 
-- ⚓️ Make use of SPM for local dependencies.
+⚓️ Make use of SPM for local dependencies.
 
-- 🚦 Colors catalogue for Light and Dark Mode.
+🚦 Colors catalogue for Light and Dark Mode.
 
-- 📥 Apply dependency injection and dependency inversion through protocol.
+📥 Apply dependency injection and dependency inversion through protocol.
 
 
 ## Project Architecture
